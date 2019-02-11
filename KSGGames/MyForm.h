@@ -43,6 +43,8 @@ namespace KSGGames {
 	private: System::Windows::Forms::TextBox^  textBox2;
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::Button^  FrontPageButton;
 
 	private:
 		/// <summary>
@@ -62,6 +64,9 @@ namespace KSGGames {
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->FrontPageButton = (gcnew System::Windows::Forms::Button());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// textBox1
@@ -106,12 +111,35 @@ namespace KSGGames {
 			this->label1->Text = L"WOW";
 			this->label1->Visible = false;
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
+			this->pictureBox1->Location = System::Drawing::Point(-1, -2);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(693, 446);
+			this->pictureBox1->TabIndex = 4;
+			this->pictureBox1->TabStop = false;
+			// 
+			// FrontPageButton
+			// 
+			this->FrontPageButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->FrontPageButton->Location = System::Drawing::Point(33, 351);
+			this->FrontPageButton->Name = L"FrontPageButton";
+			this->FrontPageButton->Size = System::Drawing::Size(123, 53);
+			this->FrontPageButton->TabIndex = 5;
+			this->FrontPageButton->Text = L"Start";
+			this->FrontPageButton->UseVisualStyleBackColor = true;
+			this->FrontPageButton->Click += gcnew System::EventHandler(this, &MyForm::pradeti);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
-			this->ClientSize = System::Drawing::Size(690, 441);
+			this->ClientSize = System::Drawing::Size(687, 437);
+			this->Controls->Add(this->FrontPageButton);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox2);
@@ -119,6 +147,7 @@ namespace KSGGames {
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -166,6 +195,10 @@ namespace KSGGames {
 		}
 
 		this->label1->Visible = true;
+	}
+	private: System::Void pradeti(System::Object^  sender, System::EventArgs^  e) {
+		this->FrontPageButton->Visible = false;
+		this->pictureBox1->Visible = false;
 	}
 	};
 }
