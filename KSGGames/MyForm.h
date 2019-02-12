@@ -1,8 +1,10 @@
 #pragma once
-//#include "logIn.h"
+
 #include <fstream>
 #include <string>
 #include <msclr\marshal_cppstd.h>
+#include "Register.h"
+#include "MenuPage.h"
 
 namespace KSGGames {
 
@@ -41,8 +43,8 @@ namespace KSGGames {
 	private: System::Windows::Forms::TextBox^  textBox1;
 	protected:
 	private: System::Windows::Forms::TextBox^  textBox2;
-	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Button^  SubmitButton;
+	private: System::Windows::Forms::Button^  RegisterButton;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 	private: System::Windows::Forms::Button^  FrontPageButton;
 
@@ -62,8 +64,8 @@ namespace KSGGames {
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->SubmitButton = (gcnew System::Windows::Forms::Button());
+			this->RegisterButton = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->FrontPageButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -87,29 +89,29 @@ namespace KSGGames {
 			this->textBox2->Size = System::Drawing::Size(426, 50);
 			this->textBox2->TabIndex = 1;
 			// 
-			// button1
+			// SubmitButton
 			// 
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 28, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->SubmitButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 28, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(485, 350);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(170, 63);
-			this->button1->TabIndex = 2;
-			this->button1->Text = L"Submit";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			this->SubmitButton->Location = System::Drawing::Point(485, 350);
+			this->SubmitButton->Name = L"SubmitButton";
+			this->SubmitButton->Size = System::Drawing::Size(170, 63);
+			this->SubmitButton->TabIndex = 2;
+			this->SubmitButton->Text = L"Submit";
+			this->SubmitButton->UseVisualStyleBackColor = true;
+			this->SubmitButton->Click += gcnew System::EventHandler(this, &MyForm::SubmitButton_Click);
 			// 
-			// label1
+			// RegisterButton
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 28, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->RegisterButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 28, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(136, 360);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(125, 44);
-			this->label1->TabIndex = 3;
-			this->label1->Text = L"WOW";
-			this->label1->Visible = false;
+			this->RegisterButton->Location = System::Drawing::Point(32, 350);
+			this->RegisterButton->Name = L"RegisterButton";
+			this->RegisterButton->Size = System::Drawing::Size(170, 63);
+			this->RegisterButton->TabIndex = 2;
+			this->RegisterButton->Text = L"Register";
+			this->RegisterButton->UseVisualStyleBackColor = true;
+			this->RegisterButton->Click += gcnew System::EventHandler(this, &MyForm::RegisterButton_Click);
 			// 
 			// pictureBox1
 			// 
@@ -140,8 +142,8 @@ namespace KSGGames {
 			this->ClientSize = System::Drawing::Size(687, 437);
 			this->Controls->Add(this->FrontPageButton);
 			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->label1);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->SubmitButton);
+			this->Controls->Add(this->RegisterButton);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->textBox1);
 			this->Name = L"MyForm";
@@ -154,7 +156,7 @@ namespace KSGGames {
 		}
 #pragma endregion
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {}
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void SubmitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		using namespace std;
 
@@ -169,7 +171,8 @@ namespace KSGGames {
 
 		if (logName == name && logPass == password)
 		{
-			this->label1->Text = L"Admin";
+			MenuPage^ input = gcnew MenuPage();
+			input->ShowDialog();
 		}
 
 		else
@@ -182,20 +185,16 @@ namespace KSGGames {
 
 				if (logName == name && logPass == password)
 				{
-					this->label1->Text = L"User";
+					MenuPage^ input = gcnew MenuPage();
+					input->ShowDialog();
 					break;
-				}
-				else
-				{
-					this->label1->Text = L"Unauthorized";
 				}
 			}
 
 			fileIn.close();
 		}
-
-		this->label1->Visible = true;
 	}
+	private: System::Void RegisterButton_Click(System::Object^  sender, System::EventArgs^  e) {}
 	private: System::Void pradeti(System::Object^  sender, System::EventArgs^  e) {
 		this->FrontPageButton->Visible = false;
 		this->pictureBox1->Visible = false;

@@ -133,10 +133,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MenuPage.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="Register.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MenuPage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MyForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Register.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
