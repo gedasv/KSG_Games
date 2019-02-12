@@ -194,7 +194,10 @@ namespace KSGGames {
 			fileIn.close();
 		}
 	}
-	private: System::Void RegisterButton_Click(System::Object^  sender, System::EventArgs^  e) {}
+	private: System::Void RegisterButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		Register^ input = gcnew Register();
+		input->ShowDialog();
+	}
 	private: System::Void pradeti(System::Object^  sender, System::EventArgs^  e) {
 		this->FrontPageButton->Visible = false;
 		this->pictureBox1->Visible = false;

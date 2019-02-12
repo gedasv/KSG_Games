@@ -133,11 +133,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdminMenu.cpp" />
+    <ClCompile Include="Game1.cpp" />
+    <ClCompile Include="Game2.cpp" />
+    <ClCompile Include="Leaderboard.cpp" />
     <ClCompile Include="MenuPage.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Register.cpp" />
+    <ClCompile Include="Settings.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdminMenu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Game1.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Game2.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Leaderboard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MenuPage.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -147,8 +164,14 @@
     <ClInclude Include="Register.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Settings.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MenuPage.resx">
+      <DependentUpon>MenuPage.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>

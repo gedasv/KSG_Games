@@ -1,3 +1,10 @@
-﻿  MyForm.cpp
-  MenuPage.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+﻿  AdminMenu.cpp
+  Game1.cpp
+  Game2.cpp
+  Leaderboard.cpp
+  MenuPage.cpp
+  MyForm.cpp
+  Settings.cpp
+  Generating Code...
+  AdminMenu.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   KSGGames.vcxproj -> C:\Users\kciul\Desktop\Baigiamasis\KSGGames\Debug\KSGGames.exe
