@@ -8,6 +8,7 @@ namespace KSGGames {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace std;
 
 	/// <summary>
 	/// Summary for Game1
@@ -35,6 +36,8 @@ namespace KSGGames {
 			}
 		}
 
+	protected:
+
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -48,11 +51,19 @@ namespace KSGGames {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"Game1";
-			this->Padding = System::Windows::Forms::Padding(0);
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Game1::typeid));
+			this->SuspendLayout();
+			// 
+			// Game1
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->ClientSize = System::Drawing::Size(600, 600);
+			this->Name = L"Game1";
+			this->Text = L"Game1";
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
 	};

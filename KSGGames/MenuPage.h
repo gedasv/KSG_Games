@@ -86,7 +86,7 @@ namespace KSGGames {
 			this->Game1But->Name = L"Game1But";
 			this->Game1But->Size = System::Drawing::Size(75, 23);
 			this->Game1But->TabIndex = 0;
-			this->Game1But->Text = L"Game-1";
+			this->Game1But->Text = L"Chess";
 			this->Game1But->UseVisualStyleBackColor = true;
 			this->Game1But->Click += gcnew System::EventHandler(this, &MenuPage::Game1But_Click);
 			// 
