@@ -1,10 +1,6 @@
 ﻿  Game1.cpp
-c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(73): error C2079: 'a' uses undefined struct 'piece'
-c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(74): error C2039: 'id': is not a member of 'System::Int32'
   MenuPage.cpp
-c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(73): error C2079: 'a' uses undefined struct 'piece'
-c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(74): error C2039: 'id': is not a member of 'System::Int32'
   MyForm.cpp
-c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(73): error C2079: 'a' uses undefined struct 'piece'
-c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(74): error C2039: 'id': is not a member of 'System::Int32'
   Generating Code...
+  AdminMenu.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  KSGGames.vcxproj -> C:\Users\kciul\Desktop\Baigiamasis\KSGGames\Debug\KSGGames.exe
