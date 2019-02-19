@@ -1,5 +1,14 @@
 #pragma once
 
+#include <string>
+#include <msclr\marshal_cppstd.h>
+#include <array>
+
+struct piece
+{
+	std::string name = "";
+};
+
 namespace KSGGames {
 
 	using namespace System;
@@ -34,7 +43,6 @@ namespace KSGGames {
 		}
 	protected:
 
-
 	private: System::Windows::Forms::PictureBox^  black_horse_l;
 	private: System::Windows::Forms::PictureBox^  black_rook_l;
 	private: System::Windows::Forms::PictureBox^  black_knight_r;
@@ -64,33 +72,18 @@ namespace KSGGames {
 	private: System::Windows::Forms::PictureBox^  white_bishop_l;
 	private: System::Windows::Forms::PictureBox^  white_queen;
 	private: System::Windows::Forms::PictureBox^  white_bishop_r;
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::PictureBox^  white_king;
 	private: System::Windows::Forms::PictureBox^  white_knight_r;
 	private: System::Windows::Forms::PictureBox^  white_rook_r;
+	private: System::Windows::Forms::TextBox^  text_box_from;
+	private: System::Windows::Forms::TextBox^  text_box_to;
+	private: System::Windows::Forms::Button^  button1;
 
-
-
-
-	protected:
-
-	protected:
-
-	protected:
-
-	protected:
+	public: System::Windows::Forms::PictureBox^ picBox(string from)
+	{
+		int x = 0;
+		return picBox("lol");
+	}
 
 	private:
 		/// <summary>
@@ -138,6 +131,9 @@ namespace KSGGames {
 			this->white_king = (gcnew System::Windows::Forms::PictureBox());
 			this->white_knight_r = (gcnew System::Windows::Forms::PictureBox());
 			this->white_rook_r = (gcnew System::Windows::Forms::PictureBox());
+			this->text_box_from = (gcnew System::Windows::Forms::TextBox());
+			this->text_box_to = (gcnew System::Windows::Forms::TextBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->black_bishop_l))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->black_bishop_r))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->black_horse_l))->BeginInit();
@@ -492,12 +488,39 @@ namespace KSGGames {
 			this->white_rook_r->TabIndex = 35;
 			this->white_rook_r->TabStop = false;
 			// 
+			// text_box_from
+			// 
+			this->text_box_from->Location = System::Drawing::Point(670, 229);
+			this->text_box_from->Name = L"text_box_from";
+			this->text_box_from->Size = System::Drawing::Size(100, 20);
+			this->text_box_from->TabIndex = 36;
+			// 
+			// text_box_to
+			// 
+			this->text_box_to->Location = System::Drawing::Point(670, 267);
+			this->text_box_to->Name = L"text_box_to";
+			this->text_box_to->Size = System::Drawing::Size(100, 20);
+			this->text_box_to->TabIndex = 37;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(681, 397);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 38;
+			this->button1->Text = L"button1";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ButtonOnClick);
+			// 
 			// Game1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(830, 630);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->text_box_to);
+			this->Controls->Add(this->text_box_from);
 			this->Controls->Add(this->white_rook_r);
 			this->Controls->Add(this->white_knight_r);
 			this->Controls->Add(this->white_king);
@@ -565,10 +588,20 @@ namespace KSGGames {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->white_knight_r))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->white_rook_r))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void pictureBox13_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void ButtonOnClick(System::Object^  sender, System::EventArgs^  e) {
+		msclr::interop::marshal_context from_marsh;
+		msclr::interop::marshal_context to_marsh;
+		string from = from_marsh.marshal_as<string>(this->text_box_from->Text);
+		string to = to_marsh.marshal_as<string>(this->text_box_to->Text);
+
+		int x = (int(to[0]) - 97) * 70 + 35;
+		int y = (8 - int(to[1]) - 48) * 70 + 35;
+
+		this->picBox(from)->Location = System::Drawing::Point(x, y);
 	}
 };
 }
