@@ -1,6 +1,9 @@
 ﻿  Game1.cpp
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(512): warning C4101: 'Board': unreferenced local variable
   MenuPage.cpp
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(512): warning C4101: 'Board': unreferenced local variable
   MyForm.cpp
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(512): warning C4101: 'Board': unreferenced local variable
   Generating Code...
   AdminMenu.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   KSGGames.vcxproj -> C:\Users\kciul\Desktop\Baigiamasis\KSGGames\Debug\KSGGames.exe

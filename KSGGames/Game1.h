@@ -1,13 +1,11 @@
 #pragma once
 
+
+#include "chess.h"
 #include <string>
 #include <msclr\marshal_cppstd.h>
+#include <vector>
 #include <array>
-
-struct piece
-{
-	std::string name = "";
-};
 
 namespace KSGGames {
 
@@ -81,8 +79,7 @@ namespace KSGGames {
 
 	public: System::Windows::Forms::PictureBox^ picBox(string from)
 	{
-		int x = 0;
-		return picBox("lol");
+		return white_king;
 	}
 
 	private:
@@ -510,7 +507,9 @@ namespace KSGGames {
 			this->button1->TabIndex = 38;
 			this->button1->Text = L"button1";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &ButtonOnClick);
+			this->button1->Click += gcnew System::EventHandler(this, &Game1::ButtonOnClick);
+
+			piece Board[8][8];
 			// 
 			// Game1
 			// 
