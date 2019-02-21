@@ -1,9 +1,18 @@
-﻿  Game1.cpp
-c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(512): warning C4101: 'Board': unreferenced local variable
+﻿  AdminMenu.cpp
+  Game1.cpp
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(9): error C2146: syntax error: missing ';' before identifier 'Board'
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.cpp(17): error C2146: syntax error: missing ')' before identifier 'arr'
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.cpp(18): error C2143: syntax error: missing ';' before '{'
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.cpp(18): error C2447: '{': missing function header (old-style formal list?)
+  Game2.cpp
+  Leaderboard.cpp
   MenuPage.cpp
-c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(512): warning C4101: 'Board': unreferenced local variable
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(9): error C2146: syntax error: missing ';' before identifier 'Board'
   MyForm.cpp
-c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(512): warning C4101: 'Board': unreferenced local variable
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\kciul\desktop\baigiamasis\ksggames\game1.h(9): error C2146: syntax error: missing ';' before identifier 'Board'
+  Register.cpp
+  Settings.cpp
   Generating Code...
-  AdminMenu.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  KSGGames.vcxproj -> C:\Users\kciul\Desktop\Baigiamasis\KSGGames\Debug\KSGGames.exe

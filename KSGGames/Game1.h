@@ -1,11 +1,12 @@
 #pragma once
 
-
-#include "chess.h"
+//#include "chess.h"
 #include <string>
 #include <msclr\marshal_cppstd.h>
 #include <vector>
 #include <array>
+
+chess_piece Board[8][8];
 
 namespace KSGGames {
 
@@ -508,8 +509,11 @@ namespace KSGGames {
 			this->button1->Text = L"button1";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Game1::ButtonOnClick);
-
-			piece Board[8][8];
+			//
+			// Board
+			//
+			//piece Board[8][8];
+			//Board_Init(Board);
 			// 
 			// Game1
 			// 
