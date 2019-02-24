@@ -134,11 +134,27 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PgrMenu.cpp" />
+    <ClCompile Include="Register.cpp" />
+    <ClCompile Include="START.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PgrMenu.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Register.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="START.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PgrMenu.resx">
+      <DependentUpon>PgrMenu.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="START.resx">
+      <DependentUpon>START.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,10 +18,27 @@
     <ClCompile Include="PgrMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="START.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Register.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PgrMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="START.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Register.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PgrMenu.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
