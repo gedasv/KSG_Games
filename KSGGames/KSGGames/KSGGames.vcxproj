@@ -133,11 +133,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="PgrMenu.cpp" />
     <ClCompile Include="Register.cpp" />
     <ClCompile Include="START.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Login.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PgrMenu.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -149,8 +153,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PgrMenu.resx">
       <DependentUpon>PgrMenu.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Register.resx">
+      <DependentUpon>Register.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="START.resx">
       <DependentUpon>START.h</DependentUpon>

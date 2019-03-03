@@ -48,12 +48,22 @@ namespace KSGGames {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"Register";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->SuspendLayout();
+			// 
+			// Register
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(284, 261);
+			this->Name = L"Register";
+			this->Text = L"Register";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Register::Register_FormClosing);
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
+	private: System::Void Register_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+		Application::Exit();
+	}
 	};
 }
