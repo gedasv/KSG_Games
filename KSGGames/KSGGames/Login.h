@@ -1,7 +1,6 @@
 #pragma once
 #include <msclr\marshal_cppstd.h>
-#include "Register.h"
-
+#include <regex>
 namespace KSGGames {
 
 	using namespace System;
@@ -63,6 +62,14 @@ namespace KSGGames {
 	private: System::Windows::Forms::Label^  registerLabel10;
 
 	private: System::Windows::Forms::Button^  registerButton2;
+	private: System::Windows::Forms::Label^  registerErrorLabel4;
+
+	private: System::Windows::Forms::Label^  registerErrorLabel3;
+
+	private: System::Windows::Forms::Label^  registerErrorLabel2;
+
+	private: System::Windows::Forms::Label^  registerErrorLabel1;
+	private: System::Windows::Forms::Label^  registerErrorLabel0;
 
 
 
@@ -91,6 +98,10 @@ namespace KSGGames {
 			this->loginLabel4 = (gcnew System::Windows::Forms::Label());
 			this->loginPanel = (gcnew System::Windows::Forms::Panel());
 			this->registerPanel = (gcnew System::Windows::Forms::Panel());
+			this->registerErrorLabel4 = (gcnew System::Windows::Forms::Label());
+			this->registerErrorLabel3 = (gcnew System::Windows::Forms::Label());
+			this->registerErrorLabel2 = (gcnew System::Windows::Forms::Label());
+			this->registerErrorLabel1 = (gcnew System::Windows::Forms::Label());
 			this->registerLabel10 = (gcnew System::Windows::Forms::Label());
 			this->registerButton2 = (gcnew System::Windows::Forms::Button());
 			this->registerTextBox6 = (gcnew System::Windows::Forms::TextBox());
@@ -102,6 +113,7 @@ namespace KSGGames {
 			this->registerTextBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->registerLabel6 = (gcnew System::Windows::Forms::Label());
 			this->registerLabel5 = (gcnew System::Windows::Forms::Label());
+			this->registerErrorLabel0 = (gcnew System::Windows::Forms::Label());
 			this->loginPanel->SuspendLayout();
 			this->registerPanel->SuspendLayout();
 			this->SuspendLayout();
@@ -208,6 +220,11 @@ namespace KSGGames {
 			// registerPanel
 			// 
 			this->registerPanel->BackColor = System::Drawing::Color::Transparent;
+			this->registerPanel->Controls->Add(this->registerErrorLabel0);
+			this->registerPanel->Controls->Add(this->registerErrorLabel4);
+			this->registerPanel->Controls->Add(this->registerErrorLabel3);
+			this->registerPanel->Controls->Add(this->registerErrorLabel2);
+			this->registerPanel->Controls->Add(this->registerErrorLabel1);
 			this->registerPanel->Controls->Add(this->registerLabel10);
 			this->registerPanel->Controls->Add(this->registerButton2);
 			this->registerPanel->Controls->Add(this->registerTextBox6);
@@ -223,6 +240,58 @@ namespace KSGGames {
 			this->registerPanel->Name = L"registerPanel";
 			this->registerPanel->Size = System::Drawing::Size(296, 563);
 			this->registerPanel->TabIndex = 1;
+			// 
+			// registerErrorLabel4
+			// 
+			this->registerErrorLabel4->AutoSize = true;
+			this->registerErrorLabel4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->registerErrorLabel4->ForeColor = System::Drawing::Color::OrangeRed;
+			this->registerErrorLabel4->Location = System::Drawing::Point(119, 440);
+			this->registerErrorLabel4->Name = L"registerErrorLabel4";
+			this->registerErrorLabel4->Size = System::Drawing::Size(173, 20);
+			this->registerErrorLabel4->TabIndex = 19;
+			this->registerErrorLabel4->Text = L"Passwords don\'t match";
+			this->registerErrorLabel4->Hide();
+			// 
+			// registerErrorLabel3
+			// 
+			this->registerErrorLabel3->AutoSize = true;
+			this->registerErrorLabel3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->registerErrorLabel3->ForeColor = System::Drawing::Color::OrangeRed;
+			this->registerErrorLabel3->Location = System::Drawing::Point(162, 350);
+			this->registerErrorLabel3->Name = L"registerErrorLabel3";
+			this->registerErrorLabel3->Size = System::Drawing::Size(130, 20);
+			this->registerErrorLabel3->TabIndex = 18;
+			this->registerErrorLabel3->Text = L"Invalid password!";
+			this->registerErrorLabel3->Hide();
+			// 
+			// registerErrorLabel2
+			// 
+			this->registerErrorLabel2->AutoSize = true;
+			this->registerErrorLabel2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->registerErrorLabel2->ForeColor = System::Drawing::Color::OrangeRed;
+			this->registerErrorLabel2->Location = System::Drawing::Point(190, 254);
+			this->registerErrorLabel2->Name = L"registerErrorLabel2";
+			this->registerErrorLabel2->Size = System::Drawing::Size(100, 20);
+			this->registerErrorLabel2->TabIndex = 17;
+			this->registerErrorLabel2->Text = L"Invalid e-mail";
+			this->registerErrorLabel2->Hide();
+			// 
+			// registerErrorLabel1
+			// 
+			this->registerErrorLabel1->AutoSize = true;
+			this->registerErrorLabel1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->registerErrorLabel1->ForeColor = System::Drawing::Color::OrangeRed;
+			this->registerErrorLabel1->Location = System::Drawing::Point(195, 167);
+			this->registerErrorLabel1->Name = L"registerErrorLabel1";
+			this->registerErrorLabel1->Size = System::Drawing::Size(98, 20);
+			this->registerErrorLabel1->TabIndex = 16;
+			this->registerErrorLabel1->Text = L"Invalid name";
+			this->registerErrorLabel1->Hide();
 			// 
 			// registerLabel10
 			// 
@@ -356,6 +425,19 @@ namespace KSGGames {
 			this->registerLabel5->TabIndex = 7;
 			this->registerLabel5->Text = L"REGISTER";
 			// 
+			// registerErrorLabel0
+			// 
+			this->registerErrorLabel0->AutoSize = true;
+			this->registerErrorLabel0->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->registerErrorLabel0->ForeColor = System::Drawing::Color::OrangeRed;
+			this->registerErrorLabel0->Location = System::Drawing::Point(142, 167);
+			this->registerErrorLabel0->Name = L"registerErrorLabel0";
+			this->registerErrorLabel0->Size = System::Drawing::Size(150, 20);
+			this->registerErrorLabel0->TabIndex = 20;
+			this->registerErrorLabel0->Text = L"Name already exists";
+			this->registerErrorLabel0->Hide();
+			// 
 			// Login
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -397,31 +479,14 @@ namespace KSGGames {
 			registerTextBox4->Clear();
 			registerTextBox5->Clear();
 			registerTextBox6->Clear();
+			registerErrorLabel0->Hide();
+			registerErrorLabel1->Hide();
+			registerErrorLabel2->Hide();
+			registerErrorLabel3->Hide();
+			registerErrorLabel4->Hide();
 			registerPanel->Show();
 		}
 
-		/*
-		private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e)
-		{
-			if (isCollapsed)
-			{
-				panelDropDown->Width += 10;
-				if (panelDropDown->Size == panelDropDown->MaximumSize)
-				{
-					timer1->Stop();
-					isCollapsed = false;
-				}
-			}
-			else
-			{
-				panelDropDown->Width -= 10;
-				if (panelDropDown->Size == panelDropDown->MinimumSize)
-				{
-					timer1->Stop();
-					isCollapsed = true;
-				}
-			}
-		}*/
 
 		/////////////////////////////
 		/* REGISTER PANEL CONTROLS */
@@ -435,36 +500,90 @@ namespace KSGGames {
 		}
 
 		private: System::Void registerButton2_Click(System::Object^  sender, System::EventArgs^  e) {
-			if (nameValidation(registerTextBox3->Text) && emailValidation(registerTextBox4->Text) && passwordValidation(registerTextBox5->Text, registerTextBox6->Text)) {
-				//registerTextBox3->Text = "VEIKIA";
+			bool validName = nameValidation(registerTextBox3->Text);
+			bool validEmail = emailValidation(registerTextBox4->Text);
+			bool validPass = passwordValidation(registerTextBox5->Text, registerTextBox6->Text);
+
+			if (validName && validEmail && validPass) {
+				registerLabel5->Text = "WORKS";
 			}
 			else {
-				//registerTextBox3->Text = "NEVEIKIA";
+				registerLabel5->Text = "NOPE";
 			}
 		}
 
 		bool nameValidation(String^ unmanagedName) {
 			std::string name = msclr::interop::marshal_as<std::string>(unmanagedName);
 			char c;
-			
-			for (int i = 0; i < name.length(); i++) {
-				c = name[i];
-				if (!( (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) {
+		
+			if (name.empty()) {
+				registerErrorLabel1->Show();
+				return false;
+			}
+			/*
+			for (size_t i = 0; i < user_count; i++) {
+				if (Users[i].name == name) {
+					registerErrorLabel0->Show();
 					return false;
 				}
 			}
+			registeredErrorLabel0->Hide();
+			*/
+
+			for (size_t i = 0; i < name.length(); i++) {
+				c = name[i];
+				if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) {
+					registerErrorLabel1->Show();
+					return false;
+				}
+			}
+			registerErrorLabel1->Hide();
 
 			return true;
 		}
-		bool passwordValidation(String^ unmanagedPass1, String^ unmanagedPass2) {
-			//registerLabel9->Text = pass1;
-			return true;
-		}
+
 		bool emailValidation(String^ unmanagedEmail) {
-			//registerLabel7->Text = email;
+			std::string email = msclr::interop::marshal_as<std::string>(unmanagedEmail);
+			const std::regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
+
+			if (regex_match(email, pattern)) {
+				registerErrorLabel2->Hide();
+				return true;
+			}
+			else {
+				registerErrorLabel2->Show();
+				return false;
+			}
+		}
+
+		bool passwordValidation(String^ unmanagedPass1, String^ unmanagedPass2) {
+			std::string pass1 = msclr::interop::marshal_as<std::string>(unmanagedPass1);
+			std::string pass2 = msclr::interop::marshal_as<std::string>(unmanagedPass2);
+			char c;
+
+			if (pass1.empty()) {
+				registerErrorLabel3->Show();
+				return false;
+			}
+
+			for (size_t i = 0; i < pass1.length(); i++) {
+				c = pass1[i];
+				if (!( (c >= 33 && c <= 126) )) {
+					registerErrorLabel3->Show();
+					return false;
+				}
+			}
+			registerErrorLabel3->Hide();
+
+			if (pass1 != pass2) {
+				registerErrorLabel4->Show();
+				return false;
+			}
+			registerErrorLabel4->Hide();
+
 			return true;
 		}
-	};
+};
 
 
 }
