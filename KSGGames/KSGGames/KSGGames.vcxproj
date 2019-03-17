@@ -135,7 +135,6 @@
   <ItemGroup>
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="PgrMenu.cpp" />
-    <ClCompile Include="Register.cpp" />
     <ClCompile Include="START.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +142,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PgrMenu.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="Register.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="START.h">
@@ -158,9 +154,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PgrMenu.resx">
       <DependentUpon>PgrMenu.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Register.resx">
-      <DependentUpon>Register.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="START.resx">
       <DependentUpon>START.h</DependentUpon>

@@ -1,0 +1,7 @@
+﻿1>------ Build started: Project: KSGGames, Configuration: Debug Win32 ------
+1>Login.cpp
+1>START.cpp
+1>Generating Code...
+1>Login.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+1>KSGGames.vcxproj -> C:\Users\PG4785SJ\Desktop\Baigiamasis Darbas\KSGGames\Debug\KSGGames.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

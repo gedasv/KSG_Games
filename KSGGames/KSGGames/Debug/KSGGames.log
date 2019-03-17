@@ -1,6 +1,7 @@
 ﻿  Login.cpp
-  Register.cpp
+c:\users\pg4785sj\desktop\baigiamasis darbas\ksggames\ksggames\login.h(450): warning C4018: '<': signed/unsigned mismatch
   START.cpp
+c:\users\pg4785sj\desktop\baigiamasis darbas\ksggames\ksggames\login.h(450): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   Login.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   KSGGames.vcxproj -> C:\Users\PG4785SJ\Desktop\Baigiamasis Darbas\KSGGames\Debug\KSGGames.exe
