@@ -473,7 +473,7 @@ namespace KSGGames {
 			PgrMenu ^ PgrMenuForm = gcnew PgrMenu;
 			this->Hide();
 			PgrMenuForm->Show();
-			
+			//loginLabel1->Text = this->Parent;
 		}
 
 		private: System::Void Login_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {

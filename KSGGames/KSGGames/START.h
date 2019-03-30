@@ -1,6 +1,6 @@
 #pragma once
 #include "Login.h"
-
+#include "PgrMenu.h"
 namespace KSGGames {
 
 	using namespace System;
@@ -71,6 +71,7 @@ namespace KSGGames {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::Control;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(1037, 619);
@@ -89,6 +90,7 @@ namespace KSGGames {
 		
 		private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 			Login ^ loginForm = gcnew Login;
+			//PgrMenu ^ menuForm = gcnew PgrMenu;
 			this->Hide();
 			loginForm->Show();
 		}
