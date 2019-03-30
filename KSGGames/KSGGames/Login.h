@@ -1,6 +1,8 @@
 #pragma once
 #include <msclr\marshal_cppstd.h>
 #include <regex>
+#include "PgrMenu.h"
+
 namespace KSGGames {
 
 	using namespace System;
@@ -10,9 +12,7 @@ namespace KSGGames {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	bool nameValidation(String^ name);
-	bool passwordValidation(String^ pass1, String^ pass2);
-	bool emailValidation(String^ email);
+
 
 	/// <summary>
 	/// Summary for Login
@@ -22,6 +22,10 @@ namespace KSGGames {
 	public:
 		Login(void)
 		{
+			bool nameValidation(String^ name);
+			bool passwordValidation(String^ pass1, String^ pass2);
+			bool emailValidation(String^ email);
+
 			InitializeComponent();
 			registerPanel->Hide();
 			//
@@ -98,6 +102,7 @@ namespace KSGGames {
 			this->loginLabel4 = (gcnew System::Windows::Forms::Label());
 			this->loginPanel = (gcnew System::Windows::Forms::Panel());
 			this->registerPanel = (gcnew System::Windows::Forms::Panel());
+			this->registerErrorLabel0 = (gcnew System::Windows::Forms::Label());
 			this->registerErrorLabel4 = (gcnew System::Windows::Forms::Label());
 			this->registerErrorLabel3 = (gcnew System::Windows::Forms::Label());
 			this->registerErrorLabel2 = (gcnew System::Windows::Forms::Label());
@@ -113,7 +118,6 @@ namespace KSGGames {
 			this->registerTextBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->registerLabel6 = (gcnew System::Windows::Forms::Label());
 			this->registerLabel5 = (gcnew System::Windows::Forms::Label());
-			this->registerErrorLabel0 = (gcnew System::Windows::Forms::Label());
 			this->loginPanel->SuspendLayout();
 			this->registerPanel->SuspendLayout();
 			this->SuspendLayout();
@@ -141,6 +145,8 @@ namespace KSGGames {
 			this->loginLabel1->TabIndex = 1;
 			this->loginLabel1->Text = L"Create a new account";
 			this->loginLabel1->Click += gcnew System::EventHandler(this, &Login::loginLabel1_Click);
+			this->loginLabel1->MouseEnter += gcnew System::EventHandler(this, &Login::loginLabel1_MouseEnter);
+			this->loginLabel1->MouseLeave += gcnew System::EventHandler(this, &Login::loginLabel1_MouseLeave);
 			// 
 			// loginTextBox1
 			// 
@@ -241,6 +247,18 @@ namespace KSGGames {
 			this->registerPanel->Size = System::Drawing::Size(296, 563);
 			this->registerPanel->TabIndex = 1;
 			// 
+			// registerErrorLabel0
+			// 
+			this->registerErrorLabel0->AutoSize = true;
+			this->registerErrorLabel0->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->registerErrorLabel0->ForeColor = System::Drawing::Color::OrangeRed;
+			this->registerErrorLabel0->Location = System::Drawing::Point(142, 167);
+			this->registerErrorLabel0->Name = L"registerErrorLabel0";
+			this->registerErrorLabel0->Size = System::Drawing::Size(150, 20);
+			this->registerErrorLabel0->TabIndex = 20;
+			this->registerErrorLabel0->Text = L"Name already exists";
+			// 
 			// registerErrorLabel4
 			// 
 			this->registerErrorLabel4->AutoSize = true;
@@ -252,7 +270,6 @@ namespace KSGGames {
 			this->registerErrorLabel4->Size = System::Drawing::Size(173, 20);
 			this->registerErrorLabel4->TabIndex = 19;
 			this->registerErrorLabel4->Text = L"Passwords don\'t match";
-			this->registerErrorLabel4->Hide();
 			// 
 			// registerErrorLabel3
 			// 
@@ -265,7 +282,6 @@ namespace KSGGames {
 			this->registerErrorLabel3->Size = System::Drawing::Size(130, 20);
 			this->registerErrorLabel3->TabIndex = 18;
 			this->registerErrorLabel3->Text = L"Invalid password!";
-			this->registerErrorLabel3->Hide();
 			// 
 			// registerErrorLabel2
 			// 
@@ -278,7 +294,6 @@ namespace KSGGames {
 			this->registerErrorLabel2->Size = System::Drawing::Size(100, 20);
 			this->registerErrorLabel2->TabIndex = 17;
 			this->registerErrorLabel2->Text = L"Invalid e-mail";
-			this->registerErrorLabel2->Hide();
 			// 
 			// registerErrorLabel1
 			// 
@@ -291,7 +306,6 @@ namespace KSGGames {
 			this->registerErrorLabel1->Size = System::Drawing::Size(98, 20);
 			this->registerErrorLabel1->TabIndex = 16;
 			this->registerErrorLabel1->Text = L"Invalid name";
-			this->registerErrorLabel1->Hide();
 			// 
 			// registerLabel10
 			// 
@@ -306,6 +320,8 @@ namespace KSGGames {
 			this->registerLabel10->TabIndex = 15;
 			this->registerLabel10->Text = L"<- Back";
 			this->registerLabel10->Click += gcnew System::EventHandler(this, &Login::registerLabel10_Click);
+			this->registerLabel10->MouseEnter += gcnew System::EventHandler(this, &Login::registerLabel10_MouseEnter);
+			this->registerLabel10->MouseLeave += gcnew System::EventHandler(this, &Login::registerLabel10_MouseLeave);
 			// 
 			// registerButton2
 			// 
@@ -425,19 +441,6 @@ namespace KSGGames {
 			this->registerLabel5->TabIndex = 7;
 			this->registerLabel5->Text = L"REGISTER";
 			// 
-			// registerErrorLabel0
-			// 
-			this->registerErrorLabel0->AutoSize = true;
-			this->registerErrorLabel0->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->registerErrorLabel0->ForeColor = System::Drawing::Color::OrangeRed;
-			this->registerErrorLabel0->Location = System::Drawing::Point(142, 167);
-			this->registerErrorLabel0->Name = L"registerErrorLabel0";
-			this->registerErrorLabel0->Size = System::Drawing::Size(150, 20);
-			this->registerErrorLabel0->TabIndex = 20;
-			this->registerErrorLabel0->Text = L"Name already exists";
-			this->registerErrorLabel0->Hide();
-			// 
 			// Login
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -467,7 +470,10 @@ namespace KSGGames {
 		////////////////////////////
 
 		private: System::Void loginButton1_Click(System::Object^  sender, System::EventArgs^  e) {
-
+			PgrMenu ^ PgrMenuForm = gcnew PgrMenu;
+			this->Hide();
+			PgrMenuForm->Show();
+			
 		}
 
 		private: System::Void Login_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
@@ -487,7 +493,12 @@ namespace KSGGames {
 			registerPanel->Show();
 		}
 
-
+		private: System::Void loginLabel1_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
+			loginLabel1->ForeColor = System::Drawing::SystemColors::HotTrack;
+		}
+		private: System::Void loginLabel1_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
+			loginLabel1->ForeColor = System::Drawing::SystemColors::MenuHighlight;
+		}
 		/////////////////////////////
 		/* REGISTER PANEL CONTROLS */
 		/////////////////////////////
@@ -577,13 +588,21 @@ namespace KSGGames {
 
 			if (pass1 != pass2) {
 				registerErrorLabel4->Show();
+				
+				registerTextBox6->Text = "";
 				return false;
 			}
 			registerErrorLabel4->Hide();
 
 			return true;
 		}
-};
 
+		private: System::Void registerLabel10_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
+			registerLabel10->ForeColor = System::Drawing::SystemColors::HotTrack;
+		}
+		private: System::Void registerLabel10_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
+			registerLabel10->ForeColor = System::Drawing::SystemColors::MenuHighlight;
+		}
+	};
 
 }
