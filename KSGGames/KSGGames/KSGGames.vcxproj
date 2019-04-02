@@ -133,11 +133,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Chess.cpp" />
+    <ClCompile Include="chess_bot.cpp" />
+    <ClCompile Include="chess_rules.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="PgrMenu.cpp" />
     <ClCompile Include="START.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Chess.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="chess_bot.h" />
+    <ClInclude Include="chess_rules.h" />
     <ClInclude Include="Login.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -149,6 +157,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Chess.resx">
+      <DependentUpon>Chess.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
     </EmbeddedResource>

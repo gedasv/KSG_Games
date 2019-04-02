@@ -1,5 +1,6 @@
 #pragma once
 //#include "Login.h";
+#include "Chess.h"
 
 namespace KSGGames {
 	using namespace System;
@@ -275,6 +276,7 @@ namespace KSGGames {
 			this->game1Button->TabIndex = 4;
 			this->game1Button->Text = L"CHESS";
 			this->game1Button->UseVisualStyleBackColor = false;
+			this->game1Button->Click += gcnew System::EventHandler(this, &PgrMenu::ChessGame);
 			// 
 			// PgrMenu
 			// 
@@ -316,6 +318,14 @@ namespace KSGGames {
 	private: System::Void gamesButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		menuPanel->Hide();
 		gamesPanel->Show();
+	}
+
+	private: System::Void ChessGame(System::Object^  sender, System::EventArgs^  e) {
+		Chess ^ chessGame = gcnew Chess;
+		//gamesPanel->Hide();
+		//menuPanel->Hide();
+		this->Hide();
+		chessGame->Show();
 	}
 };
 }
