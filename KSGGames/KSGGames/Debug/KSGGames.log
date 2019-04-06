@@ -1,2 +1,9 @@
-﻿  Chess.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  KSGGames.vcxproj -> C:\Users\kciul\Desktop\KSGGames\KSGGames\Debug\KSGGames.exe
+﻿  Login.cpp
+c:\users\pg4785sj\desktop\baigiamasis darbas\ksggames\ksggames\chess.h(310): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  PgrMenu.cpp
+c:\users\pg4785sj\desktop\baigiamasis darbas\ksggames\ksggames\chess.h(310): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  START.cpp
+c:\users\pg4785sj\desktop\baigiamasis darbas\ksggames\ksggames\chess.h(310): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  Chess.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  KSGGames.vcxproj -> C:\Users\PG4785SJ\Desktop\Baigiamasis Darbas\KSGGames\Debug\KSGGames.exe
