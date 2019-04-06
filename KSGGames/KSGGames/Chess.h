@@ -389,12 +389,8 @@ namespace KSGGames {
 	private: System::Windows::Forms::PictureBox^  whiteQueen;
 	private: System::Windows::Forms::PictureBox^  whiteRook;
 	private: System::Windows::Forms::PictureBox^  blackKnight;
-private: System::Windows::Forms::PictureBox^  whiteKnight;
-private: System::Windows::Forms::PictureBox^  greenSquare;
-	protected:
-
-
-	protected:
+	private: System::Windows::Forms::PictureBox^  whiteKnight;
+	private: System::Windows::Forms::PictureBox^  greenSquare;
 
 	private:
 		/// <summary>

@@ -25,3 +25,237 @@
  _ _ _ _ _ _ _ _
  W W W W W W W _
  W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B B B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ W _ _ _ _
+ _ _ _ _ _ _ _ _
+ W W W _ W W W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B _ B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ B _ _ _
+ _ _ _ W _ _ _ _
+ _ _ _ _ _ _ _ _
+ W W W _ W W W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B _ B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ W _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ W W W _ W W W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B B B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ W _
+ _ _ _ _ _ _ _ _
+ W W W W W W _ W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B B B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ W _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W _ W W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B B _ B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ B _ _
+ _ _ _ _ W _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W _ W W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B B B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ W _ _
+ _ _ _ _ _ _ _ _
+ W W W W W _ W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B _ B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ B _ _ _
+ _ _ _ _ _ W _ _
+ _ _ _ _ _ _ _ _
+ W W W W W _ W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B B B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ W _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W _ W W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B B _ B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ B _ _
+ _ _ _ _ W _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W _ W W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B B B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ W _ _
+ _ _ _ _ _ _ _ _
+ W W W W W _ W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B B B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ W _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ W W _ W W W W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B B B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ W _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W _ W W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B B B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ W _ _
+ _ _ _ _ _ _ _ _
+ W W W W W _ W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B _ B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ B _ _ _
+ _ _ _ _ _ W _ _
+ _ _ _ _ _ _ _ _
+ W W W W W _ W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B _ B B B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ W _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W W _ W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B _ _ B B
+ _ _ _ _ _ B _ _
+ _ _ _ _ W _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W W _ W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B _ _ B B
+ _ _ _ _ _ W _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W W _ W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B _ _ _ B
+ _ _ _ _ _ B _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W W _ W W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B _ _ _ B
+ _ _ _ _ _ B _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ W _
+ _ _ _ _ _ _ _ _
+ W W W W W _ _ W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B _ _ _ B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ B _ _
+ _ _ _ _ _ _ W _
+ _ _ _ _ _ _ _ _
+ W W W W W _ _ W
+ W W W W W W W W
+----------------
+ B B B B B B B B
+ B B B B _ _ _ B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ W _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W W _ _ W
+ W W W W W W W W
+----------------
+ B B B B B _ B B
+ B B B B _ _ _ B
+ _ _ _ B _ _ _ _
+ _ _ _ _ _ W _ _
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W W _ _ W
+ W W W W W W W W
+----------------
+ B B B B B _ B B
+ B B B B _ _ _ B
+ _ _ _ B _ _ _ _
+ _ _ _ _ _ W _ _
+ _ _ _ _ W _ _ _
+ _ _ _ _ _ _ _ _
+ W W W W _ _ _ W
+ W W W W W W W W
+----------------
+ B B B B B _ B B
+ B B B B _ _ _ B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ W _ _
+ _ _ _ _ W _ _ _
+ _ _ _ _ _ _ B _
+ W W W W _ _ _ W
+ W W W W W W W W
+----------------
+ B B B B B _ B B
+ B B B B _ _ _ B
+ _ _ _ _ _ _ _ _
+ _ _ _ _ _ W _ _
+ _ _ _ _ W _ _ _
+ _ _ _ _ _ _ W _
+ W W W W _ _ _ _
+ W W W W W W W W

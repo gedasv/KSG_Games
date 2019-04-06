@@ -2277,7 +2277,7 @@
         AAAASUVORK5CYII=
 </value>
   </data>
-  <data name="game4Button.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="gamesBackButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAASYAAAA4CAYAAABQb1WFAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         wwAADsMBx2+oZAAAUuFJREFUeF6F3WeXHEeS7nl8/3d7du/ZmbktqQUIQquCLgUtCgUNkOzu2fs1cu1n

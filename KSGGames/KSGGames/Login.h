@@ -22,16 +22,151 @@ namespace KSGGames {
 	public:
 		Login(void)
 		{
-			bool nameValidation(String^ name);
-			bool passwordValidation(String^ pass1, String^ pass2);
-			bool emailValidation(String^ email);
-
 			InitializeComponent();
 			registerPanel->Hide();
-			//
-			//TODO: Add the constructor code here
-			//
+
+
 		}
+
+	////////////////////////////
+	/*  LOGIN PANEL CONTROLS  */
+	////////////////////////////
+
+	private: System::Void loginButton1_Click(System::Object^  sender, System::EventArgs^  e) {
+		PgrMenu ^ PgrMenuForm = gcnew PgrMenu;
+		this->Hide();
+		PgrMenuForm->Show();
+		//loginLabel1->Text = this->Parent;
+	}
+
+	private: System::Void Login_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+		Application::Exit();
+	}
+	private: System::Void loginLabel1_Click(System::Object^  sender, System::EventArgs^  e) {
+		loginPanel->Hide();
+		registerTextBox3->Clear();
+		registerTextBox4->Clear();
+		registerTextBox5->Clear();
+		registerTextBox6->Clear();
+		registerErrorLabel0->Hide();
+		registerErrorLabel1->Hide();
+		registerErrorLabel2->Hide();
+		registerErrorLabel3->Hide();
+		registerErrorLabel4->Hide();
+		registerPanel->Show();
+	}
+
+	private: System::Void loginLabel1_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
+		loginLabel1->ForeColor = System::Drawing::SystemColors::HotTrack;
+	}
+	private: System::Void loginLabel1_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
+		loginLabel1->ForeColor = System::Drawing::SystemColors::MenuHighlight;
+	}
+
+	/////////////////////////////
+	/* REGISTER PANEL CONTROLS */
+	/////////////////////////////
+
+	private: System::Void registerLabel10_Click(System::Object^  sender, System::EventArgs^  e) {
+		registerPanel->Hide();
+		loginTextBox1->Clear();
+		loginTextBox2->Clear();
+		loginPanel->Show();
+	}
+
+	private: System::Void registerButton2_Click(System::Object^  sender, System::EventArgs^  e) {
+		bool validName = nameValidation(registerTextBox3->Text);
+		bool validEmail = emailValidation(registerTextBox4->Text);
+		bool validPass = passwordValidation(registerTextBox5->Text, registerTextBox6->Text);
+
+		if (validName && validEmail && validPass) {
+			registerLabel5->Text = "WORKS";
+		}
+		else {
+			registerLabel5->Text = "NOPE";
+		}
+	}
+
+	private: bool nameValidation(String^ unmanagedName) {
+				 std::string name = msclr::interop::marshal_as<std::string>(unmanagedName);
+				 char c;
+
+				 if (name.empty()) {
+					 registerErrorLabel1->Show();
+					 return false;
+				 }
+				 /*
+				 for (size_t i = 0; i < user_count; i++) {
+					 if (Users[i].name == name) {
+						 registerErrorLabel0->Show();
+						 return false;
+					 }
+				 }
+				 registeredErrorLabel0->Hide();
+				 */
+
+				 for (size_t i = 0; i < name.length(); i++) {
+					 c = name[i];
+					 if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) {
+						 registerErrorLabel1->Show();
+						 return false;
+					 }
+				 }
+				 registerErrorLabel1->Hide();
+
+				 return true;
+			 }
+
+	private: bool emailValidation(String^ unmanagedEmail) {
+				 std::string email = msclr::interop::marshal_as<std::string>(unmanagedEmail);
+				 const std::regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
+
+				 if (regex_match(email, pattern)) {
+					 registerErrorLabel2->Hide();
+					 return true;
+				 }
+				 else {
+					 registerErrorLabel2->Show();
+					 return false;
+				 }
+			 }
+
+	private: bool passwordValidation(String^ unmanagedPass1, String^ unmanagedPass2) {
+				 std::string pass1 = msclr::interop::marshal_as<std::string>(unmanagedPass1);
+				 std::string pass2 = msclr::interop::marshal_as<std::string>(unmanagedPass2);
+				 char c;
+
+				 if (pass1.empty()) {
+					 registerErrorLabel3->Show();
+					 return false;
+				 }
+
+				 for (size_t i = 0; i < pass1.length(); i++) {
+					 c = pass1[i];
+					 if (!((c >= 33 && c <= 126))) {
+						 registerErrorLabel3->Show();
+						 return false;
+					 }
+				 }
+				 registerErrorLabel3->Hide();
+
+				 if (pass1 != pass2) {
+					 registerErrorLabel4->Show();
+
+					 registerTextBox6->Text = "";
+					 return false;
+				 }
+				 registerErrorLabel4->Hide();
+
+				 return true;
+			 }
+
+	private: System::Void registerLabel10_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
+		registerLabel10->ForeColor = System::Drawing::SystemColors::HotTrack;
+	}
+	private: System::Void registerLabel10_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
+		registerLabel10->ForeColor = System::Drawing::SystemColors::MenuHighlight;
+	}
 
 	protected:
 		/// <summary>
@@ -44,6 +179,7 @@ namespace KSGGames {
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::Button^  loginButton1;
 	private: System::Windows::Forms::Label^  loginLabel1;
 	private: System::Windows::Forms::TextBox^  loginTextBox1;
@@ -465,144 +601,5 @@ namespace KSGGames {
 		}
 #pragma endregion
 
-		////////////////////////////
-		/*  LOGIN PANEL CONTROLS  */
-		////////////////////////////
-
-		private: System::Void loginButton1_Click(System::Object^  sender, System::EventArgs^  e) {
-			PgrMenu ^ PgrMenuForm = gcnew PgrMenu;
-			this->Hide();
-			PgrMenuForm->Show();
-			//loginLabel1->Text = this->Parent;
-		}
-
-		private: System::Void Login_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
-			Application::Exit();
-		}
-		private: System::Void loginLabel1_Click(System::Object^  sender, System::EventArgs^  e) {
-			loginPanel->Hide();
-			registerTextBox3->Clear();
-			registerTextBox4->Clear();
-			registerTextBox5->Clear();
-			registerTextBox6->Clear();
-			registerErrorLabel0->Hide();
-			registerErrorLabel1->Hide();
-			registerErrorLabel2->Hide();
-			registerErrorLabel3->Hide();
-			registerErrorLabel4->Hide();
-			registerPanel->Show();
-		}
-
-		private: System::Void loginLabel1_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
-			loginLabel1->ForeColor = System::Drawing::SystemColors::HotTrack;
-		}
-		private: System::Void loginLabel1_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
-			loginLabel1->ForeColor = System::Drawing::SystemColors::MenuHighlight;
-		}
-		/////////////////////////////
-		/* REGISTER PANEL CONTROLS */
-		/////////////////////////////
-
-		private: System::Void registerLabel10_Click(System::Object^  sender, System::EventArgs^  e) {
-			registerPanel->Hide();
-			loginTextBox1->Clear();
-			loginTextBox2->Clear();
-			loginPanel->Show();
-		}
-
-		private: System::Void registerButton2_Click(System::Object^  sender, System::EventArgs^  e) {
-			bool validName = nameValidation(registerTextBox3->Text);
-			bool validEmail = emailValidation(registerTextBox4->Text);
-			bool validPass = passwordValidation(registerTextBox5->Text, registerTextBox6->Text);
-
-			if (validName && validEmail && validPass) {
-				registerLabel5->Text = "WORKS";
-			}
-			else {
-				registerLabel5->Text = "NOPE";
-			}
-		}
-
-		bool nameValidation(String^ unmanagedName) {
-			std::string name = msclr::interop::marshal_as<std::string>(unmanagedName);
-			char c;
-		
-			if (name.empty()) {
-				registerErrorLabel1->Show();
-				return false;
-			}
-			/*
-			for (size_t i = 0; i < user_count; i++) {
-				if (Users[i].name == name) {
-					registerErrorLabel0->Show();
-					return false;
-				}
-			}
-			registeredErrorLabel0->Hide();
-			*/
-
-			for (size_t i = 0; i < name.length(); i++) {
-				c = name[i];
-				if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) {
-					registerErrorLabel1->Show();
-					return false;
-				}
-			}
-			registerErrorLabel1->Hide();
-
-			return true;
-		}
-
-		bool emailValidation(String^ unmanagedEmail) {
-			std::string email = msclr::interop::marshal_as<std::string>(unmanagedEmail);
-			const std::regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
-
-			if (regex_match(email, pattern)) {
-				registerErrorLabel2->Hide();
-				return true;
-			}
-			else {
-				registerErrorLabel2->Show();
-				return false;
-			}
-		}
-
-		bool passwordValidation(String^ unmanagedPass1, String^ unmanagedPass2) {
-			std::string pass1 = msclr::interop::marshal_as<std::string>(unmanagedPass1);
-			std::string pass2 = msclr::interop::marshal_as<std::string>(unmanagedPass2);
-			char c;
-
-			if (pass1.empty()) {
-				registerErrorLabel3->Show();
-				return false;
-			}
-
-			for (size_t i = 0; i < pass1.length(); i++) {
-				c = pass1[i];
-				if (!( (c >= 33 && c <= 126) )) {
-					registerErrorLabel3->Show();
-					return false;
-				}
-			}
-			registerErrorLabel3->Hide();
-
-			if (pass1 != pass2) {
-				registerErrorLabel4->Show();
-				
-				registerTextBox6->Text = "";
-				return false;
-			}
-			registerErrorLabel4->Hide();
-
-			return true;
-		}
-
-		private: System::Void registerLabel10_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
-			registerLabel10->ForeColor = System::Drawing::SystemColors::HotTrack;
-		}
-		private: System::Void registerLabel10_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
-			registerLabel10->ForeColor = System::Drawing::SystemColors::MenuHighlight;
-		}
 	};
-
 }
