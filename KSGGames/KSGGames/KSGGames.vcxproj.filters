@@ -39,6 +39,9 @@
     <ClCompile Include="Minesweeper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="user.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PgrMenu.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="minesweeper_rules.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="user.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

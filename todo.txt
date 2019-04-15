@@ -1,0 +1,18 @@
+TO DO
+
+"Login.h"
+(su login)
+- padaryti hashed passwords
+
+(su register)
+- sutvarkyti validations (?)
+- bsk kartojasi kodas
+- spaghetti gedai wtf
+
+"PgrMenu.h"
+- leaderboards uzbaigti
+- friends sistema
+- leaderboards kad butu ieskojimas windows budu
+
+"Minesweeper.h"
+- tiesiog padaryti

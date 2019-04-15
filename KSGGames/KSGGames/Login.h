@@ -2,6 +2,7 @@
 #include <msclr\marshal_cppstd.h>
 #include <regex>
 #include "PgrMenu.h"
+#include "user.h"
 
 namespace KSGGames {
 
@@ -11,8 +12,9 @@ namespace KSGGames {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
-
+	//using namespace MySql::Data::MySqlClient;
+	
+	//const std::string connInfo = "SERVER=127.0.0.1;UserID=root;Password=;Database=ksg_games";
 
 	/// <summary>
 	/// Summary for Login
@@ -33,16 +35,48 @@ namespace KSGGames {
 	////////////////////////////
 
 	private: System::Void loginButton1_Click(System::Object^  sender, System::EventArgs^  e) {
-		PgrMenu ^ PgrMenuForm = gcnew PgrMenu;
-		this->Hide();
-		PgrMenuForm->Show();
-		//loginLabel1->Text = this->Parent;
+		try {
+			MySqlConnection^ conn;
+			MySqlDataReader^ dr;
+			MySqlCommand^ cmd;
+			connectToSQL(conn);
+
+			loginErrorLabel1->Hide();
+			loginErrorLabel2->Hide();
+
+			String^ name = loginTextBox1->Text;
+			String^ pass = loginTextBox2->Text;
+
+			cmd = gcnew MySqlCommand("SELECT * FROM users WHERE username= '" + name + "' ", conn);
+			dr = cmd->ExecuteReader();
+
+			while (dr->Read()) {
+				if (dr->GetString(4) == pass) {
+					PgrMenu ^ PgrMenuForm = gcnew PgrMenu(dr->GetInt32(0));
+					conn->Close();
+
+					this->Hide();
+					PgrMenuForm->Show();
+					return;
+				}
+				loginErrorLabel2->Show();
+				loginTextBox2->Clear();
+				conn->Close();
+				return;
+			}
+			loginErrorLabel1->Show();
+			conn->Close();
+		}
+
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message);
+		}
 	}
 
 	private: System::Void Login_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
 		Application::Exit();
 	}
-	private: System::Void loginLabel1_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void showRegisterPanel(System::Object^  sender, System::EventArgs^  e) {
 		loginPanel->Hide();
 		registerTextBox3->Clear();
 		registerTextBox4->Clear();
@@ -67,88 +101,134 @@ namespace KSGGames {
 	/* REGISTER PANEL CONTROLS */
 	/////////////////////////////
 
-	private: System::Void registerLabel10_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void showLoginPanel(System::Object^  sender, System::EventArgs^  e) {
 		registerPanel->Hide();
 		loginTextBox1->Clear();
 		loginTextBox2->Clear();
+		loginErrorLabel1->Hide();
+		loginErrorLabel2->Hide();
 		loginPanel->Show();
 	}
 
 	private: System::Void registerButton2_Click(System::Object^  sender, System::EventArgs^  e) {
-		bool validName = nameValidation(registerTextBox3->Text);
-		bool validEmail = emailValidation(registerTextBox4->Text);
-		bool validPass = passwordValidation(registerTextBox5->Text, registerTextBox6->Text);
 
-		if (validName && validEmail && validPass) {
-			registerLabel5->Text = "WORKS";
+		String^ name = registerTextBox3->Text;
+		String^ email = registerTextBox4->Text;
+		String^ pass = registerTextBox5->Text;
+		String^ pass2 = registerTextBox6->Text;
+
+		try {
+			bool validName = nameValidation(name);
+			bool validEmail = emailValidation(email);
+			bool validPass = passwordValidation(pass, pass2);
+
+			if (validName && validEmail && validPass) {
+				MySqlConnection^ conn;
+				MySqlDataReader^ dr;
+				MySqlCommand^ cmd;
+				int points = 0;
+				bool admin = false;
+
+				connectToSQL(conn);
+
+				int id = 0;
+				cmd = gcnew MySqlCommand("SELECT Auto_increment FROM information_schema.tables WHERE table_name='users'", conn);
+				dr = cmd->ExecuteReader(); dr->Read();
+				id = dr->GetInt32(0);
+				dr->Close();
+
+				cmd = gcnew MySqlCommand("INSERT INTO users VALUES(" + id + "," + admin + ",'" + name + "','" + email + "','" + pass + "'," + points + ")", conn);
+				dr = cmd->ExecuteReader();
+				dr->Close();
+
+				conn->Close();
+
+				showLoginPanel(this, e);
+				MessageBox::Show("User created successfully.");
+			}
 		}
-		else {
-			registerLabel5->Text = "NOPE";
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message);
 		}
 	}
 
 	private: bool nameValidation(String^ unmanagedName) {
-				 std::string name = msclr::interop::marshal_as<std::string>(unmanagedName);
-				 char c;
+				std::string name = msclr::interop::marshal_as<std::string>(unmanagedName);
+				char c;
+				MySqlConnection^ conn;
+				MySqlDataReader^ dr;
+				MySqlCommand^ cmd;
 
-				 if (name.empty()) {
-					 registerErrorLabel1->Show();
-					 return false;
-				 }
-				 /*
-				 for (size_t i = 0; i < user_count; i++) {
-					 if (Users[i].name == name) {
-						 registerErrorLabel0->Show();
-						 return false;
-					 }
-				 }
-				 registeredErrorLabel0->Hide();
-				 */
+				connectToSQL(conn);
+				registerErrorLabel1->Hide();
+				registerErrorLabel0->Hide();
 
-				 for (size_t i = 0; i < name.length(); i++) {
-					 c = name[i];
-					 if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) {
-						 registerErrorLabel1->Show();
-						 return false;
-					 }
-				 }
-				 registerErrorLabel1->Hide();
+				cmd = gcnew MySqlCommand("select * from users WHERE username= '"+ unmanagedName +"' ", conn);
+				dr = cmd->ExecuteReader();
 
-				 return true;
+				while (dr->Read()) {
+					registerErrorLabel0->Show();
+					return false;
+				}
+
+				if (name.empty()) {
+					registerErrorLabel1->Show();
+					return false;
+				}
+				for (size_t i = 0; i < name.length(); i++) {
+					c = name[i];
+					if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) {
+						registerErrorLabel1->Show();
+						return false;
+					}
+				}
+
+				
+				conn->Close();
+				return true;
 			 }
 
 	private: bool emailValidation(String^ unmanagedEmail) {
-				 std::string email = msclr::interop::marshal_as<std::string>(unmanagedEmail);
-				 const std::regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
+				std::string email = msclr::interop::marshal_as<std::string>(unmanagedEmail);
+				const std::regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
+				MySqlConnection^ conn;
+				MySqlDataReader^ dr;
+				MySqlCommand^ cmd;
 
-				 if (regex_match(email, pattern)) {
-					 registerErrorLabel2->Hide();
-					 return true;
-				 }
-				 else {
-					 registerErrorLabel2->Show();
-					 return false;
-				 }
-			 }
+				connectToSQL(conn);
+
+				cmd = gcnew MySqlCommand("select * from users WHERE email= '" + unmanagedEmail + "' ", conn);
+				dr = cmd->ExecuteReader();
+
+				registerErrorLabel2->Hide();
+				registerErrorLabel5->Hide();
+
+				while (dr->Read()) {
+					registerErrorLabel5->Show();
+					return false;
+				}
+				conn->Close();
+
+				if (!regex_match(email, pattern)) {
+					registerErrorLabel2->Show();
+					return false;
+				}
+
+				conn->Close();
+				return true;
+			}
 
 	private: bool passwordValidation(String^ unmanagedPass1, String^ unmanagedPass2) {
 				 std::string pass1 = msclr::interop::marshal_as<std::string>(unmanagedPass1);
 				 std::string pass2 = msclr::interop::marshal_as<std::string>(unmanagedPass2);
-				 char c;
+
+				 registerErrorLabel3->Hide();
+				 registerErrorLabel4->Hide();
 
 				 if (pass1.empty()) {
 					 registerErrorLabel3->Show();
 					 return false;
 				 }
-
-				 for (size_t i = 0; i < pass1.length(); i++) {
-					 c = pass1[i];
-					 if (!((c >= 33 && c <= 126))) {
-						 registerErrorLabel3->Show();
-						 return false;
-					 }
-				 }
-				 registerErrorLabel3->Hide();
 
 				 if (pass1 != pass2) {
 					 registerErrorLabel4->Show();
@@ -156,7 +236,6 @@ namespace KSGGames {
 					 registerTextBox6->Text = "";
 					 return false;
 				 }
-				 registerErrorLabel4->Hide();
 
 				 return true;
 			 }
@@ -180,38 +259,35 @@ namespace KSGGames {
 			}
 		}
 
+	private: System::Windows::Forms::Panel^  loginPanel;
 	private: System::Windows::Forms::Button^  loginButton1;
 	private: System::Windows::Forms::Label^  loginLabel1;
-	private: System::Windows::Forms::TextBox^  loginTextBox1;
 	private: System::Windows::Forms::Label^  loginLabel2;
 	private: System::Windows::Forms::Label^  loginLabel3;
-	private: System::Windows::Forms::TextBox^  loginTextBox2;
-
 	private: System::Windows::Forms::Label^  loginLabel4;
-	private: System::Windows::Forms::Panel^  loginPanel;
+	private: System::Windows::Forms::TextBox^  loginTextBox1;
+	private: System::Windows::Forms::TextBox^  loginTextBox2;
+	private: System::Windows::Forms::Label^  loginErrorLabel2;
+	private: System::Windows::Forms::Label^  loginErrorLabel1;
+
 	private: System::Windows::Forms::Panel^  registerPanel;
-	private: System::Windows::Forms::TextBox^  registerTextBox3;
-	private: System::Windows::Forms::Label^  registerLabel6;
-	private: System::Windows::Forms::Label^  registerLabel5;
-	private: System::Windows::Forms::TextBox^  registerTextBox6;
-	private: System::Windows::Forms::Label^  registerLabel9;
-	private: System::Windows::Forms::TextBox^  registerTextBox5;
-	private: System::Windows::Forms::Label^  registerLabel8;
-	private: System::Windows::Forms::TextBox^  registerTextBox4;
-	private: System::Windows::Forms::Label^  registerLabel7;
-	private: System::Windows::Forms::Label^  registerLabel10;
-
 	private: System::Windows::Forms::Button^  registerButton2;
-	private: System::Windows::Forms::Label^  registerErrorLabel4;
-
-	private: System::Windows::Forms::Label^  registerErrorLabel3;
-
-	private: System::Windows::Forms::Label^  registerErrorLabel2;
-
-	private: System::Windows::Forms::Label^  registerErrorLabel1;
+	private: System::Windows::Forms::Label^  registerLabel5;
+	private: System::Windows::Forms::Label^  registerLabel6;
+	private: System::Windows::Forms::Label^  registerLabel7;
+	private: System::Windows::Forms::Label^  registerLabel8;
+	private: System::Windows::Forms::Label^  registerLabel9;
+	private: System::Windows::Forms::Label^  registerLabel10;
+	private: System::Windows::Forms::TextBox^  registerTextBox3;
+	private: System::Windows::Forms::TextBox^  registerTextBox4;
+	private: System::Windows::Forms::TextBox^  registerTextBox5;
+	private: System::Windows::Forms::TextBox^  registerTextBox6;
 	private: System::Windows::Forms::Label^  registerErrorLabel0;
-
-
+	private: System::Windows::Forms::Label^  registerErrorLabel1;
+	private: System::Windows::Forms::Label^  registerErrorLabel2;
+	private: System::Windows::Forms::Label^  registerErrorLabel3;
+	private: System::Windows::Forms::Label^  registerErrorLabel4;
+	private: System::Windows::Forms::Label^  registerErrorLabel5;
 
 	protected:
 
@@ -237,7 +313,10 @@ namespace KSGGames {
 			this->loginTextBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->loginLabel4 = (gcnew System::Windows::Forms::Label());
 			this->loginPanel = (gcnew System::Windows::Forms::Panel());
+			this->loginErrorLabel2 = (gcnew System::Windows::Forms::Label());
+			this->loginErrorLabel1 = (gcnew System::Windows::Forms::Label());
 			this->registerPanel = (gcnew System::Windows::Forms::Panel());
+			this->registerErrorLabel5 = (gcnew System::Windows::Forms::Label());
 			this->registerErrorLabel0 = (gcnew System::Windows::Forms::Label());
 			this->registerErrorLabel4 = (gcnew System::Windows::Forms::Label());
 			this->registerErrorLabel3 = (gcnew System::Windows::Forms::Label());
@@ -280,7 +359,7 @@ namespace KSGGames {
 			this->loginLabel1->Size = System::Drawing::Size(136, 16);
 			this->loginLabel1->TabIndex = 1;
 			this->loginLabel1->Text = L"Create a new account";
-			this->loginLabel1->Click += gcnew System::EventHandler(this, &Login::loginLabel1_Click);
+			this->loginLabel1->Click += gcnew System::EventHandler(this, &Login::showRegisterPanel);
 			this->loginLabel1->MouseEnter += gcnew System::EventHandler(this, &Login::loginLabel1_MouseEnter);
 			this->loginLabel1->MouseLeave += gcnew System::EventHandler(this, &Login::loginLabel1_MouseLeave);
 			// 
@@ -300,7 +379,7 @@ namespace KSGGames {
 			this->loginLabel2->BackColor = System::Drawing::Color::Transparent;
 			this->loginLabel2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(186)));
-			this->loginLabel2->ForeColor = System::Drawing::SystemColors::ActiveCaption;
+			this->loginLabel2->ForeColor = System::Drawing::SystemColors::HighlightText;
 			this->loginLabel2->Location = System::Drawing::Point(16, 133);
 			this->loginLabel2->Name = L"loginLabel2";
 			this->loginLabel2->Size = System::Drawing::Size(116, 25);
@@ -313,7 +392,7 @@ namespace KSGGames {
 			this->loginLabel3->BackColor = System::Drawing::Color::Transparent;
 			this->loginLabel3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(186)));
-			this->loginLabel3->ForeColor = System::Drawing::SystemColors::ActiveCaption;
+			this->loginLabel3->ForeColor = System::Drawing::SystemColors::HighlightText;
 			this->loginLabel3->Location = System::Drawing::Point(16, 228);
 			this->loginLabel3->Name = L"loginLabel3";
 			this->loginLabel3->Size = System::Drawing::Size(112, 25);
@@ -335,12 +414,12 @@ namespace KSGGames {
 			// 
 			this->loginLabel4->AutoSize = true;
 			this->loginLabel4->BackColor = System::Drawing::Color::Transparent;
-			this->loginLabel4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 48, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->loginLabel4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 48, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(186)));
-			this->loginLabel4->ForeColor = System::Drawing::SystemColors::MenuHighlight;
+			this->loginLabel4->ForeColor = System::Drawing::SystemColors::Highlight;
 			this->loginLabel4->Location = System::Drawing::Point(33, 26);
 			this->loginLabel4->Name = L"loginLabel4";
-			this->loginLabel4->Size = System::Drawing::Size(232, 73);
+			this->loginLabel4->Size = System::Drawing::Size(237, 73);
 			this->loginLabel4->TabIndex = 6;
 			this->loginLabel4->Text = L"LOGIN";
 			// 
@@ -354,14 +433,43 @@ namespace KSGGames {
 			this->loginPanel->Controls->Add(this->loginTextBox1);
 			this->loginPanel->Controls->Add(this->loginLabel2);
 			this->loginPanel->Controls->Add(this->loginLabel3);
+			this->loginPanel->Controls->Add(this->loginErrorLabel2);
+			this->loginPanel->Controls->Add(this->loginErrorLabel1);
 			this->loginPanel->Location = System::Drawing::Point(16, 14);
 			this->loginPanel->Name = L"loginPanel";
 			this->loginPanel->Size = System::Drawing::Size(305, 569);
 			this->loginPanel->TabIndex = 0;
 			// 
+			// loginErrorLabel2
+			// 
+			this->loginErrorLabel2->AutoSize = true;
+			this->loginErrorLabel2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->loginErrorLabel2->ForeColor = System::Drawing::Color::OrangeRed;
+			this->loginErrorLabel2->Location = System::Drawing::Point(149, 348);
+			this->loginErrorLabel2->Name = L"loginErrorLabel2";
+			this->loginErrorLabel2->Size = System::Drawing::Size(144, 20);
+			this->loginErrorLabel2->TabIndex = 22;
+			this->loginErrorLabel2->Text = L"Incorrect password";
+			this->loginErrorLabel2->Visible = false;
+			// 
+			// loginErrorLabel1
+			// 
+			this->loginErrorLabel1->AutoSize = true;
+			this->loginErrorLabel1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->loginErrorLabel1->ForeColor = System::Drawing::Color::OrangeRed;
+			this->loginErrorLabel1->Location = System::Drawing::Point(118, 348);
+			this->loginErrorLabel1->Name = L"loginErrorLabel1";
+			this->loginErrorLabel1->Size = System::Drawing::Size(175, 20);
+			this->loginErrorLabel1->TabIndex = 21;
+			this->loginErrorLabel1->Text = L"Username doesn\'t exist";
+			this->loginErrorLabel1->Visible = false;
+			// 
 			// registerPanel
 			// 
 			this->registerPanel->BackColor = System::Drawing::Color::Transparent;
+			this->registerPanel->Controls->Add(this->registerErrorLabel5);
 			this->registerPanel->Controls->Add(this->registerErrorLabel0);
 			this->registerPanel->Controls->Add(this->registerErrorLabel4);
 			this->registerPanel->Controls->Add(this->registerErrorLabel3);
@@ -382,6 +490,19 @@ namespace KSGGames {
 			this->registerPanel->Name = L"registerPanel";
 			this->registerPanel->Size = System::Drawing::Size(296, 563);
 			this->registerPanel->TabIndex = 1;
+			// 
+			// registerErrorLabel5
+			// 
+			this->registerErrorLabel5->AutoSize = true;
+			this->registerErrorLabel5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->registerErrorLabel5->ForeColor = System::Drawing::Color::OrangeRed;
+			this->registerErrorLabel5->Location = System::Drawing::Point(140, 254);
+			this->registerErrorLabel5->Name = L"registerErrorLabel5";
+			this->registerErrorLabel5->Size = System::Drawing::Size(152, 20);
+			this->registerErrorLabel5->TabIndex = 21;
+			this->registerErrorLabel5->Text = L"E-mail already exists";
+			this->registerErrorLabel5->Visible = false;
 			// 
 			// registerErrorLabel0
 			// 
@@ -455,7 +576,7 @@ namespace KSGGames {
 			this->registerLabel10->Size = System::Drawing::Size(53, 16);
 			this->registerLabel10->TabIndex = 15;
 			this->registerLabel10->Text = L"<- Back";
-			this->registerLabel10->Click += gcnew System::EventHandler(this, &Login::registerLabel10_Click);
+			this->registerLabel10->Click += gcnew System::EventHandler(this, &Login::showLoginPanel);
 			this->registerLabel10->MouseEnter += gcnew System::EventHandler(this, &Login::registerLabel10_MouseEnter);
 			this->registerLabel10->MouseLeave += gcnew System::EventHandler(this, &Login::registerLabel10_MouseLeave);
 			// 
@@ -487,7 +608,7 @@ namespace KSGGames {
 			this->registerLabel9->BackColor = System::Drawing::Color::Transparent;
 			this->registerLabel9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(186)));
-			this->registerLabel9->ForeColor = System::Drawing::SystemColors::ActiveCaption;
+			this->registerLabel9->ForeColor = System::Drawing::SystemColors::HighlightText;
 			this->registerLabel9->Location = System::Drawing::Point(16, 378);
 			this->registerLabel9->Name = L"registerLabel9";
 			this->registerLabel9->Size = System::Drawing::Size(192, 25);
@@ -511,7 +632,7 @@ namespace KSGGames {
 			this->registerLabel8->BackColor = System::Drawing::Color::Transparent;
 			this->registerLabel8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(186)));
-			this->registerLabel8->ForeColor = System::Drawing::SystemColors::ActiveCaption;
+			this->registerLabel8->ForeColor = System::Drawing::SystemColors::HighlightText;
 			this->registerLabel8->Location = System::Drawing::Point(16, 287);
 			this->registerLabel8->Name = L"registerLabel8";
 			this->registerLabel8->Size = System::Drawing::Size(112, 25);
@@ -534,7 +655,7 @@ namespace KSGGames {
 			this->registerLabel7->BackColor = System::Drawing::Color::Transparent;
 			this->registerLabel7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(186)));
-			this->registerLabel7->ForeColor = System::Drawing::SystemColors::ActiveCaption;
+			this->registerLabel7->ForeColor = System::Drawing::SystemColors::HighlightText;
 			this->registerLabel7->Location = System::Drawing::Point(16, 195);
 			this->registerLabel7->Name = L"registerLabel7";
 			this->registerLabel7->Size = System::Drawing::Size(79, 25);
@@ -557,7 +678,7 @@ namespace KSGGames {
 			this->registerLabel6->BackColor = System::Drawing::Color::Transparent;
 			this->registerLabel6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(186)));
-			this->registerLabel6->ForeColor = System::Drawing::SystemColors::ActiveCaption;
+			this->registerLabel6->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->registerLabel6->Location = System::Drawing::Point(16, 105);
 			this->registerLabel6->Name = L"registerLabel6";
 			this->registerLabel6->Size = System::Drawing::Size(116, 25);
@@ -568,12 +689,12 @@ namespace KSGGames {
 			// 
 			this->registerLabel5->AutoSize = true;
 			this->registerLabel5->BackColor = System::Drawing::Color::Transparent;
-			this->registerLabel5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->registerLabel5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(186)));
 			this->registerLabel5->ForeColor = System::Drawing::SystemColors::MenuHighlight;
-			this->registerLabel5->Location = System::Drawing::Point(18, 23);
+			this->registerLabel5->Location = System::Drawing::Point(11, 28);
 			this->registerLabel5->Name = L"registerLabel5";
-			this->registerLabel5->Size = System::Drawing::Size(269, 55);
+			this->registerLabel5->Size = System::Drawing::Size(277, 55);
 			this->registerLabel5->TabIndex = 7;
 			this->registerLabel5->Text = L"REGISTER";
 			// 
@@ -583,8 +704,8 @@ namespace KSGGames {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(329, 593);
-			this->Controls->Add(this->registerPanel);
 			this->Controls->Add(this->loginPanel);
+			this->Controls->Add(this->registerPanel);
 			this->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
 			this->MaximizeBox = false;
