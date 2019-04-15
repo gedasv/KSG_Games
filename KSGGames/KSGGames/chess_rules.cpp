@@ -123,15 +123,13 @@ bool checkAfter(Square Board[8][8],  bool whiteCheck)
 }
 bool firstCheckUp(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool whitesMove)
 {
-	if (Board[xFrom][yFrom].Team() != "neutral" &&
-		Board[xFrom][yFrom].Team() != Board[xTo][yTo].Team() &&
+	if (Board[xFrom][yFrom].Team() != Board[xTo][yTo].Team() &&
 		((whitesMove && Board[xFrom][yFrom].Team() == "white") || (!whitesMove && Board[xFrom][yFrom].Team() == "black")))
 	{
 		return true;
 	}
 
 	return false;
-
 }
 bool otherMove(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool &whitesMove)
 {
@@ -143,7 +141,6 @@ bool otherMove(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool 
 			{
 				kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
 				Board[xTo][yTo].Move();
-				printMap(Board);
 				return true;
 			}
 		}
@@ -155,7 +152,6 @@ bool otherMove(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool 
 			if (abs(xFrom - xTo) == abs(yFrom - yTo))
 			{
 				kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
-				printMap(Board);
 				return true;
 			}
 		}
@@ -176,14 +172,12 @@ bool otherMove(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool 
 							{
 								kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
 								if ((yFrom - yTo) == 2) { Board[xTo][yTo].Move(); }
-								printMap(Board);
 								return true;
 							}
 						}
 						else if (yFrom - yTo == 1)
 						{
 							kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
-							printMap(Board);
 							return true;
 						}
 					}
@@ -196,14 +190,12 @@ bool otherMove(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool 
 							{
 								kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
 								if ((yTo - yFrom) == 2) { Board[xTo][yTo].Move(); }
-								printMap(Board);
 								return true;
 							}
 						}
 						else if (yTo - yFrom == 1)
 						{
 							kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
-							printMap(Board);
 							return true;
 						}
 					}
@@ -216,7 +208,6 @@ bool otherMove(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool 
 					if (yFrom > yTo && Board[xTo][yTo].Team() == "black")
 					{
 						kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
-						printMap(Board);
 						return true;
 					}
 				}
@@ -225,7 +216,6 @@ bool otherMove(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool 
 					if (yFrom < yTo && Board[xTo][yTo].Team() == "white")
 					{
 						kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
-						printMap(Board);
 						return true;
 					}
 				}
@@ -238,7 +228,6 @@ bool otherMove(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool 
 		{
 			kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
 			Board[xTo][yTo].Move();
-			printMap(Board);
 			return true;
 		}
 	}
@@ -247,7 +236,6 @@ bool otherMove(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool 
 		if ((abs(xFrom - xTo) == 2 && abs(yFrom - yTo) == 1) || (abs(xFrom - xTo) == 1 && abs(yFrom - yTo) == 2))
 		{
 			kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
-			printMap(Board);
 			return true;
 		}
 	}
@@ -257,26 +245,23 @@ bool otherMove(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool 
 bool elPass(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool &whitesMove)
 {
 	if (Board[xTo][yTo].Team() == "neutral" && Board[xFrom][yFrom].Type() == "Pawn" && abs(xTo - xFrom) == 1 && abs(yTo - yFrom) == 1)
-
 	{
 		if (Board[xFrom][yFrom].Team() == "white")
 		{
-			if (Board[xTo][yTo + 1].Team() == "black" && Board[xTo][yTo + 1].Moved())
+			if (Board[xTo][yTo + 1].Type() == "Pawn" && Board[xTo][yTo + 1].Team() == "black" && Board[xTo][yTo + 1].Moved())
 			{
 				kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
 				Board[xTo][yTo + 1].SetTeam("neutral");
-				printMap(Board);
 				return true;
 			}
 		}
 
 		else
 		{
-			if (Board[xTo][yTo - 1].Team() == "white" && Board[xTo][yTo - 1].Moved())
+			if (Board[xTo][yTo - 1].Type() == "Pawn" && Board[xTo][yTo - 1].Team() == "white" && Board[xTo][yTo - 1].Moved())
 			{
 				kirtimas(Board[xFrom][yFrom], Board[xTo][yTo], whitesMove);
 				Board[xTo][yTo - 1].SetTeam("neutral");
-				printMap(Board);
 				return true;
 			}
 		}
@@ -327,8 +312,6 @@ bool castling(Square Board[8][8], int xFrom, int yFrom, int xTo, int yTo, bool &
 
 					copyArr(Test_Board, Board);
 					whitesMove = !whitesMove;
-
-					printMap(Board);
 					
 					return true;
 				}
@@ -376,24 +359,6 @@ void copyArr(Square Board[8][8], Square A_Board[8][8])
 		}
 	}
 }
-void printMap(Square Board[8][8])
-{
-	std::ofstream OutPut("Game.txt", std::ios_base::app);
-	OutPut << "----------------" << std::endl;
-	for (int i = 0; i < 8; i++)
-	{
-		for (int j = 0; j < 8; j++)
-		{
-			std::string letter;
-			if (Board[j][i].Team() == "neutral") letter = " _";
-			else if (Board[j][i].Team() == "white") letter = " W";
-			else letter = " B";
-			OutPut << letter;
-		}
-		OutPut << std::endl;
-	}
-	OutPut.close();
-}
 void kirtimas(Square &A, Square &B, bool &whitesMove)
 {
 	B = A;
@@ -408,7 +373,7 @@ void kirtimas(Square &A, Square &B, bool &whitesMove)
 std::string changeEndPawn(Square Board[8][8], std::string name)
 {
 	std::string place;
-	for (int i = 0; i < 8; i + 7)
+	for (int i = 0; i < 8; i += 7)
 	{
 		for (int j = 0; j < 8; j++)
 		{

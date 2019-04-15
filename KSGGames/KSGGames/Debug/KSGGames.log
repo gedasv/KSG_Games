@@ -1,9 +1,24 @@
-﻿  Login.cpp
-c:\users\pg4785sj\desktop\baigiamasis darbas\ksggames\ksggames\chess.h(310): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+﻿  Chess.cpp
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess.h(359): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  chess_bot.cpp
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(35): warning C4018: '<': signed/unsigned mismatch
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(92): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(93): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(94): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(95): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(241): warning C4018: '<': signed/unsigned mismatch
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(268): warning C4018: '<': signed/unsigned mismatch
+  chess_rules.cpp
+  Login.cpp
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess.h(359): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Minesweeper.cpp
+  Monopoly.cpp
   PgrMenu.cpp
-c:\users\pg4785sj\desktop\baigiamasis darbas\ksggames\ksggames\chess.h(310): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess.h(359): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   START.cpp
-c:\users\pg4785sj\desktop\baigiamasis darbas\ksggames\ksggames\chess.h(310): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess.h(359): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Generating Code...
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_rules.cpp(391): warning C4715: 'changeEndPawn': not all control paths return a value
+  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
   Chess.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  KSGGames.vcxproj -> C:\Users\PG4785SJ\Desktop\Baigiamasis Darbas\KSGGames\Debug\KSGGames.exe
+  KSGGames.vcxproj -> C:\Users\kciul\Desktop\KSGGames\KSGGames\Debug\KSGGames.exe

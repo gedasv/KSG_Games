@@ -29,7 +29,7 @@ bool checkAfter(Square Board[8][8], bool whiteCheck);
 bool endPawn(Square Board[8][8], bool whitesMove);
 
 void copyArr(Square Board[8][8], Square A_Board[8][8]);
-void printMap(Square Board[8][8]);
+//void printMap(Square Board[8][8]);
 void clearMoved(Square Board[8][8], bool whitesMove);
 void kirtimas(Square &A, Square &B, bool &whitesMove);
 
