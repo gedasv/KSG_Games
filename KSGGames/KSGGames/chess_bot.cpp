@@ -144,7 +144,7 @@ bool generateMove(changedMap Board[8][8], bool whitesMove, int &fromTo)
 
 							if (xTo == xFrom)
 							{
-								if (!pieceHere(Board, xTo, yTo))
+								if (!pieceHere(Board, xTo, yTo) && legalMove(Board, xFrom, yFrom, xTo, yTo, whitesMove))
 								{
 									basicMove(Board, xFrom, yFrom, xTo, yTo);
 									fromTo = (1000 * xFrom) + (100 * yFrom) + (10 * xTo) + yTo;
@@ -152,7 +152,7 @@ bool generateMove(changedMap Board[8][8], bool whitesMove, int &fromTo)
 								}
 							}
 
-							else if(teamPieceHere(Board, xTo, yTo, enemyTeam))
+							else if(teamPieceHere(Board, xTo, yTo, enemyTeam) && legalMove(Board, xFrom, yFrom, xTo, yTo, whitesMove))
 							{
 								basicMove(Board, xFrom, yFrom, xTo, yTo);
 								fromTo = (1000 * xFrom) + (100 * yFrom) + (10 * xTo) + yTo;
@@ -166,7 +166,7 @@ bool generateMove(changedMap Board[8][8], bool whitesMove, int &fromTo)
 						if (obj.Team() == "black") yTo = 3;
 						else yTo = 4;
 
-						if (!pieceHere(Board, xFrom, yTo) && !pieceHere(Board, xFrom, (abs(yTo - yFrom) / 2)))
+						if (!pieceHere(Board, xFrom, yTo) && !pieceHere(Board, xFrom, (abs(yTo - yFrom) / 2)) && legalMove(Board, xFrom, yFrom, xFrom, yTo, whitesMove))
 						{
 							basicMove(Board, xFrom, yFrom, xFrom, yTo);
 							fromTo = (1000 * xFrom) + (100 * yFrom) + (10 * xFrom) + yTo;

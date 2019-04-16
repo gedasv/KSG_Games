@@ -16,3 +16,6 @@ TO DO
 
 "Minesweeper.h"
 - tiesiog padaryti
+
+"Chess"
+-optimize move generation
