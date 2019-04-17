@@ -1,9 +1,6 @@
-﻿  Login.cpp
+﻿  START.cpp
 c:\users\gedas\desktop\ksg_games\ksggames\ksggames\chess.h(359): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  PgrMenu.cpp
-c:\users\gedas\desktop\ksg_games\ksggames\ksggames\chess.h(359): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  START.cpp
-c:\users\gedas\desktop\ksg_games\ksggames\ksggames\chess.h(359): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
+c:\users\gedas\desktop\ksg_games\ksggames\ksggames\pgrmenu.h(171): warning C4101: 'username': unreferenced local variable
+c:\users\gedas\desktop\ksg_games\ksggames\ksggames\pgrmenu.h(172): warning C4101: 'userPoints': unreferenced local variable
   Chess.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   KSGGames.vcxproj -> C:\Users\gedas\Desktop\ksg_games\KSGGames\Debug\KSGGames.exe

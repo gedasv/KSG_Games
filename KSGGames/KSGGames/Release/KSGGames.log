@@ -1,0 +1,11 @@
+﻿  Login.cpp
+c:\users\gedas\desktop\ksg_games\ksggames\ksggames\chess.h(359): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\gedas\desktop\ksg_games\ksggames\ksggames\pgrmenu.h(183): warning C4101: 'correctName': unreferenced local variable
+  PgrMenu.cpp
+c:\users\gedas\desktop\ksg_games\ksggames\ksggames\chess.h(359): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\gedas\desktop\ksg_games\ksggames\ksggames\pgrmenu.h(183): warning C4101: 'correctName': unreferenced local variable
+  START.cpp
+c:\users\gedas\desktop\ksg_games\ksggames\ksggames\chess.h(359): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\gedas\desktop\ksg_games\ksggames\ksggames\pgrmenu.h(183): warning C4101: 'correctName': unreferenced local variable
+  Generating Code...
+  KSGGames.vcxproj -> C:\Users\gedas\Desktop\ksg_games\KSGGames\Release\KSGGames.exe

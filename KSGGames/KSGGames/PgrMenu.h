@@ -49,6 +49,7 @@ namespace KSGGames {
 		}
 
 	private: array<System::Windows::Forms::Label^, 2>^ leaderboardLabelArray;
+	private: array<String^, 1>^ leaderboardFoundNames;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 	protected:
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
@@ -86,16 +87,20 @@ namespace KSGGames {
 	private: System::Windows::Forms::Panel^  leaderboardPanel;
 	private: System::Windows::Forms::Button^  leaderboardBackButton;
 
-
-
-
-
 	private: System::Windows::Forms::TextBox^  leaderboardSearchTextbox;
 	private: System::Windows::Forms::Label^  leaderboardLabel1;
 	private: System::Windows::Forms::Panel^  leaderboardListPanel;
 	private: System::Windows::Forms::Label^  leaderboardListPointsLabel;
 	private: System::Windows::Forms::Label^  leaderboardListNameLabel;
 	private: System::Windows::Forms::Label^  leaderboardListPlaceLabel;
+	private: System::Windows::Forms::Label^  leaderboardYourLabel3;
+
+	private: System::Windows::Forms::Label^  leaderboardYourLabel2;
+
+	private: System::Windows::Forms::Label^  leaderboardYourLabel1;
+	private: System::Windows::Forms::Label^  leaderboardYouAreLabel;
+
+
 
 	private: System::Windows::Forms::Button^  game1Button;
 
@@ -123,13 +128,121 @@ namespace KSGGames {
 
 	private: System::Void leaderboardButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		menuPanel->Hide();
-		setLeaderboardInfo();
+		setLeaderboardInfo("");
 		leaderboardPanel->Show();
 	}
 	private: System::Void leaderboardBackButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		menuPanel->Show();
 		leaderboardPanel->Hide();
 	}
+	private: System::Void leaderboardSearchTextbox_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+		setLeaderboardInfo(leaderboardSearchTextbox->Text);
+	}
+	private: void labelArrayInit(array<System::Windows::Forms::Label^, 2>^ leaderboardLabelArray) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 7; j++) {
+				System::Windows::Forms::Label^ leaderboardLabel = (gcnew System::Windows::Forms::Label());
+
+				leaderboardLabel->AutoSize = true;
+				leaderboardLabel->Parent = leaderboardListPanel;
+				leaderboardLabel->Font = (gcnew System::Drawing::Font(L"Rockwell", 17));
+				leaderboardLabel->Name = L"leaderboardPlaceLabel" + j;
+				leaderboardLabel->Size = System::Drawing::Size(10, 26);
+				leaderboardLabel->TabIndex = 69;
+
+				switch (i) {
+
+				case 0: leaderboardLabel->Text = "";
+					leaderboardLabel->Location = System::Drawing::Point(7, 52 + j * 41);
+					leaderboardLabel->MaximumSize = System::Drawing::Size(55, 26);
+					break;
+				case 1: leaderboardLabel->Text = "";
+					leaderboardLabel->Location = System::Drawing::Point(62, 52 + j * 41);
+					leaderboardLabel->MaximumSize = System::Drawing::Size(205, 28);
+					break;
+				case 2: leaderboardLabel->Text = "";
+					leaderboardLabel->Location = System::Drawing::Point(252, 52 + j * 41);
+					leaderboardLabel->MaximumSize = System::Drawing::Size(84, 26);
+					leaderboardLabel->ForeColor = System::Drawing::Color::DodgerBlue;
+					break;
+				}
+
+				leaderboardLabelArray[i, j] = leaderboardLabel;
+
+			}
+		}
+
+	}
+	private: void setLeaderboardInfo(String ^ enteredName) {
+		try {
+			MySqlConnection ^conn;
+			MySqlDataReader ^dr;
+			MySqlCommand ^cmd1, ^cmd2;
+			int i = 0, i2 = 0, rowAmount = 0, userPlace = 0;
+			leaderboardFoundNames = gcnew array<String^, 1>(7);
+			String^ correctName;
+			String^ userUsername = gcnew String(user.GetName().c_str());
+			for (int i = 0; i < 3; i++) 
+				for (int j = 0; j < 7; j++) 
+					leaderboardLabelArray[i, j]->Text = "";
+
+			connectToSQL(conn);
+
+			cmd1 = gcnew MySqlCommand("SELECT Username, Points FROM users ORDER BY Points DESC LIMIT 1000", conn);
+			dr = cmd1->ExecuteReader();
+			while (dr->Read()) {
+				if (dr->GetString(0) == userUsername)
+					userPlace = rowAmount + 1;
+					
+				rowAmount++;
+			}
+			dr->Close();
+			leaderboardYourLabel1->Text = L"" + userPlace + ".";
+			leaderboardYourLabel2->Text = userUsername;
+			leaderboardYourLabel3->Text = L"" + user.points;
+			leaderboardYouAreLabel->Text = L"You are #" + userPlace + " out of " + rowAmount + " users!";
+
+			cmd1 = gcnew MySqlCommand("SELECT Username, Points FROM users WHERE Username LIKE '%"+enteredName+"%' ORDER BY Points DESC LIMIT 1000", conn);
+			cmd2 = gcnew MySqlCommand("SELECT Username, Points FROM users ORDER BY Points DESC LIMIT 1000", conn);
+
+			///
+			dr = cmd1->ExecuteReader();
+			i = 0;
+			while (dr->Read()) {
+				if(i < 7)
+					leaderboardFoundNames[i] = dr->GetString(0);
+				else break;
+				i++;
+			}
+			dr->Close();
+			///
+
+			dr = cmd2->ExecuteReader();
+			i = 0;
+			while (dr->Read()) {
+				i++;
+				if (enteredName != "" && dr->GetString(0) == leaderboardFoundNames[i2] && i2 < 7) {
+					leaderboardLabelArray[0, i2]->Text = L"" + i + ".";
+					leaderboardLabelArray[1, i2]->Text = dr->GetString(0);
+					leaderboardLabelArray[2, i2]->Text = dr->GetString(1);
+					i2++;
+				}
+				else if (enteredName == "") {
+					if (i < 8) {
+						leaderboardLabelArray[0, i-1]->Text = L"" + i + ".";
+						leaderboardLabelArray[1, i-1]->Text = dr->GetString(0);
+						leaderboardLabelArray[2, i-1]->Text = dr->GetString(1);
+					}
+				}
+			}
+			dr->Close();
+			conn->Close();
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message);
+		}
+	}
+
 
 	private: System::Void userButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		menuPanel->Hide();
@@ -248,87 +361,6 @@ namespace KSGGames {
 		}
 	}
 
-	private: void labelArrayInit(array<System::Windows::Forms::Label^, 2>^ leaderboardLabelArray) {
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 7; j++) {
-				System::Windows::Forms::Label^ leaderboardLabel = (gcnew System::Windows::Forms::Label());
-
-				leaderboardLabel->AutoSize = true;
-				leaderboardLabel->Parent = leaderboardListPanel;
-				leaderboardLabel->Font = (gcnew System::Drawing::Font(L"Rockwell", 17));
-				leaderboardLabel->Name = L"leaderboardPlaceLabel" + j;
-				leaderboardLabel->Size = System::Drawing::Size(10, 26);
-				leaderboardLabel->TabIndex = 69;
-
-				switch (i) {
-					
-					case 0: leaderboardLabel->Text = "";
-							leaderboardLabel->Location = System::Drawing::Point(7, 52 + j * 41);
-							leaderboardLabel->MaximumSize = System::Drawing::Size(55, 26);
-							break;
-					case 1: leaderboardLabel->Text = "";
-							leaderboardLabel->Location = System::Drawing::Point(62, 52 + j * 41);
-							leaderboardLabel->MaximumSize = System::Drawing::Size(205, 28);
-							break;
-					case 2: leaderboardLabel->Text = "";
-							leaderboardLabel->Location = System::Drawing::Point(252, 52 + j * 41);
-							leaderboardLabel->MaximumSize = System::Drawing::Size(84, 26);
-							leaderboardLabel->ForeColor = System::Drawing::Color::DodgerBlue;
-							break;
-				}
-
-				leaderboardLabelArray[i, j] = leaderboardLabel;
-				
-			}
-		}
-		
-	}
-	private: void setLeaderboardInfo() {
-		try {
-			MySqlConnection^ conn;
-			MySqlDataReader^ dr;
-			MySqlCommand^ cmd;
-			int userAmount = 0;
-			int location = 0;
-			String^ username;
-			int userPoints;
-			
-			/*
-			connectToSQL(conn);
-			cmd = gcnew MySqlCommand("SELECT count(*) FROM users", conn);
-			dr = cmd->ExecuteReader();
-			dr->Read();
-			userAmount = dr->GetInt32(0);
-			dr->Close();
-			conn->Close();
-			*/
-
-			connectToSQL(conn);
-			cmd = gcnew MySqlCommand("SELECT Username, Points FROM users ORDER BY Points DESC LIMIT 1000", conn);
-			dr = cmd->ExecuteReader();
-
-			while (dr->Read()) {
-				username = dr->GetString(0);
-				userPoints = dr->GetInt32(1);
-				MessageBox::Show("" + location + " username:" + username);
-				location++;
-
-				//leaderboardLabelArray(0, 0)->Text = "";
- 			}
-			userAmount = location;
-
-			/*
-			for (int i = 0; i < 3; i++) {
-				for (int j = 0; j < 7; j++) {
-
-				}
-			}*/
-			conn->Close();
-		}
-		catch (Exception^ ex) {
-			MessageBox::Show(ex->Message);
-		}
-	}
 
 	private: void slideIn(System::Windows::Forms::Panel^ panel, int x, int y, int xTo) {
 		panel->Location = Point(x, y);
@@ -412,7 +444,11 @@ namespace KSGGames {
 				 this->userTextBox2 = (gcnew System::Windows::Forms::TextBox());
 				 this->userTextBox1 = (gcnew System::Windows::Forms::TextBox());
 				 this->leaderboardPanel = (gcnew System::Windows::Forms::Panel());
+				 this->leaderboardYouAreLabel = (gcnew System::Windows::Forms::Label());
 				 this->leaderboardListPanel = (gcnew System::Windows::Forms::Panel());
+				 this->leaderboardYourLabel3 = (gcnew System::Windows::Forms::Label());
+				 this->leaderboardYourLabel2 = (gcnew System::Windows::Forms::Label());
+				 this->leaderboardYourLabel1 = (gcnew System::Windows::Forms::Label());
 				 this->leaderboardListPointsLabel = (gcnew System::Windows::Forms::Label());
 				 this->leaderboardListNameLabel = (gcnew System::Windows::Forms::Label());
 				 this->leaderboardListPlaceLabel = (gcnew System::Windows::Forms::Label());
@@ -829,6 +865,7 @@ namespace KSGGames {
 				 // leaderboardPanel
 				 // 
 				 this->leaderboardPanel->BackColor = System::Drawing::Color::Transparent;
+				 this->leaderboardPanel->Controls->Add(this->leaderboardYouAreLabel);
 				 this->leaderboardPanel->Controls->Add(this->leaderboardListPanel);
 				 this->leaderboardPanel->Controls->Add(this->leaderboardSearchTextbox);
 				 this->leaderboardPanel->Controls->Add(this->leaderboardLabel1);
@@ -838,10 +875,24 @@ namespace KSGGames {
 				 this->leaderboardPanel->Size = System::Drawing::Size(439, 723);
 				 this->leaderboardPanel->TabIndex = 9;
 				 // 
+				 // leaderboardYouAreLabel
+				 // 
+				 this->leaderboardYouAreLabel->AutoSize = true;
+				 this->leaderboardYouAreLabel->Font = (gcnew System::Drawing::Font(L"Rockwell", 16, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
+				 this->leaderboardYouAreLabel->Location = System::Drawing::Point(84, 127);
+				 this->leaderboardYouAreLabel->Name = L"leaderboardYouAreLabel";
+				 this->leaderboardYouAreLabel->Size = System::Drawing::Size(96, 27);
+				 this->leaderboardYouAreLabel->TabIndex = 18;
+				 this->leaderboardYouAreLabel->Text = L"You are";
+				 // 
 				 // leaderboardListPanel
 				 // 
 				 this->leaderboardListPanel->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"leaderboardListPanel.BackgroundImage")));
 				 this->leaderboardListPanel->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+				 this->leaderboardListPanel->Controls->Add(this->leaderboardYourLabel3);
+				 this->leaderboardListPanel->Controls->Add(this->leaderboardYourLabel2);
+				 this->leaderboardListPanel->Controls->Add(this->leaderboardYourLabel1);
 				 this->leaderboardListPanel->Controls->Add(this->leaderboardListPointsLabel);
 				 this->leaderboardListPanel->Controls->Add(this->leaderboardListNameLabel);
 				 this->leaderboardListPanel->Controls->Add(this->leaderboardListPlaceLabel);
@@ -849,6 +900,45 @@ namespace KSGGames {
 				 this->leaderboardListPanel->Name = L"leaderboardListPanel";
 				 this->leaderboardListPanel->Size = System::Drawing::Size(347, 408);
 				 this->leaderboardListPanel->TabIndex = 17;
+				 // 
+				 // leaderboardYourLabel3
+				 // 
+				 this->leaderboardYourLabel3->AutoSize = true;
+				 this->leaderboardYourLabel3->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
+				 this->leaderboardYourLabel3->ForeColor = System::Drawing::Color::MidnightBlue;
+				 this->leaderboardYourLabel3->Location = System::Drawing::Point(252, 365);
+				 this->leaderboardYourLabel3->MaximumSize = System::Drawing::Size(84, 26);
+				 this->leaderboardYourLabel3->Name = L"leaderboardYourLabel3";
+				 this->leaderboardYourLabel3->Size = System::Drawing::Size(48, 26);
+				 this->leaderboardYourLabel3->TabIndex = 23;
+				 this->leaderboardYourLabel3->Text = L"420";
+				 // 
+				 // leaderboardYourLabel2
+				 // 
+				 this->leaderboardYourLabel2->AutoSize = true;
+				 this->leaderboardYourLabel2->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
+				 this->leaderboardYourLabel2->ForeColor = System::Drawing::SystemColors::HighlightText;
+				 this->leaderboardYourLabel2->Location = System::Drawing::Point(62, 365);
+				 this->leaderboardYourLabel2->MaximumSize = System::Drawing::Size(205, 28);
+				 this->leaderboardYourLabel2->Name = L"leaderboardYourLabel2";
+				 this->leaderboardYourLabel2->Size = System::Drawing::Size(152, 26);
+				 this->leaderboardYourLabel2->TabIndex = 22;
+				 this->leaderboardYourLabel2->Text = L"SampleName";
+				 // 
+				 // leaderboardYourLabel1
+				 // 
+				 this->leaderboardYourLabel1->AutoSize = true;
+				 this->leaderboardYourLabel1->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
+				 this->leaderboardYourLabel1->ForeColor = System::Drawing::SystemColors::HighlightText;
+				 this->leaderboardYourLabel1->Location = System::Drawing::Point(7, 365);
+				 this->leaderboardYourLabel1->MaximumSize = System::Drawing::Size(55, 26);
+				 this->leaderboardYourLabel1->Name = L"leaderboardYourLabel1";
+				 this->leaderboardYourLabel1->Size = System::Drawing::Size(43, 26);
+				 this->leaderboardYourLabel1->TabIndex = 21;
+				 this->leaderboardYourLabel1->Text = L"69.";
 				 // 
 				 // leaderboardListPointsLabel
 				 // 
@@ -892,6 +982,7 @@ namespace KSGGames {
 				 this->leaderboardSearchTextbox->Name = L"leaderboardSearchTextbox";
 				 this->leaderboardSearchTextbox->Size = System::Drawing::Size(291, 32);
 				 this->leaderboardSearchTextbox->TabIndex = 16;
+				 this->leaderboardSearchTextbox->TextChanged += gcnew System::EventHandler(this, &PgrMenu::leaderboardSearchTextbox_TextChanged);
 				 // 
 				 // leaderboardLabel1
 				 // 
@@ -953,6 +1044,7 @@ namespace KSGGames {
 
 			 }
 #pragma endregion
+
 
 
 };

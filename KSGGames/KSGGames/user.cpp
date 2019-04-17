@@ -6,7 +6,7 @@
 using namespace System;
 using namespace MySql::Data::MySqlClient;
 
-const std::string connInfo = "SERVER=127.0.0.1;UserID=root;Password=;Database=ksg_games";
+const std::string connInfo = "SERVER=127.0.0.1;UserID=root;Password=;Database=ksg_games";;
 
 void User::initUser(int ID) {
 	MySqlConnection^ conn;

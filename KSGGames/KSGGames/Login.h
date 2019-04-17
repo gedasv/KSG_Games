@@ -416,7 +416,7 @@ namespace KSGGames {
 			this->loginLabel4->BackColor = System::Drawing::Color::Transparent;
 			this->loginLabel4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 48, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(186)));
-			this->loginLabel4->ForeColor = System::Drawing::SystemColors::Highlight;
+			this->loginLabel4->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->loginLabel4->Location = System::Drawing::Point(33, 26);
 			this->loginLabel4->Name = L"loginLabel4";
 			this->loginLabel4->Size = System::Drawing::Size(237, 73);
@@ -691,7 +691,7 @@ namespace KSGGames {
 			this->registerLabel5->BackColor = System::Drawing::Color::Transparent;
 			this->registerLabel5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(186)));
-			this->registerLabel5->ForeColor = System::Drawing::SystemColors::MenuHighlight;
+			this->registerLabel5->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->registerLabel5->Location = System::Drawing::Point(11, 28);
 			this->registerLabel5->Name = L"registerLabel5";
 			this->registerLabel5->Size = System::Drawing::Size(277, 55);
