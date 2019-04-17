@@ -721,6 +721,5 @@ namespace KSGGames {
 
 		}
 #pragma endregion
-
-	};
+};
 }

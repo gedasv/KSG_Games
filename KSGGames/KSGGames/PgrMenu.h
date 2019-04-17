@@ -31,14 +31,9 @@ namespace KSGGames {
 			leaderboardPanel->Hide();
 
 			user.initUser(id);
-			playerList = gcnew array<System::Windows::Forms::Label^, 2>(3, 6);
-
+			leaderboardLabelArray = gcnew array<System::Windows::Forms::Label^, 2>(3, 7);
+			labelArrayInit(leaderboardLabelArray);
 			
-			for (int i = 0; i < 3; i++) {
-				for (int j = 0; j < 6; j++) {
-			//		playerList[i][j] = leaderboardPointsLabel1;
-				}
-			}
 		}
 
 	protected:
@@ -53,7 +48,7 @@ namespace KSGGames {
 			}
 		}
 
-	private: array<System::Windows::Forms::Label^, 2>^ playerList;
+	private: array<System::Windows::Forms::Label^, 2>^ leaderboardLabelArray;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 	protected:
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
@@ -90,48 +85,17 @@ namespace KSGGames {
 	private: System::Windows::Forms::Button^  userTerminateButton2;
 	private: System::Windows::Forms::Panel^  leaderboardPanel;
 	private: System::Windows::Forms::Button^  leaderboardBackButton;
+
+
+
+
+
+	private: System::Windows::Forms::TextBox^  leaderboardSearchTextbox;
+	private: System::Windows::Forms::Label^  leaderboardLabel1;
 	private: System::Windows::Forms::Panel^  leaderboardListPanel;
-	private: System::Windows::Forms::Label^  leaderboardsPlaceLabel1;
 	private: System::Windows::Forms::Label^  leaderboardListPointsLabel;
 	private: System::Windows::Forms::Label^  leaderboardListNameLabel;
 	private: System::Windows::Forms::Label^  leaderboardListPlaceLabel;
-	private: System::Windows::Forms::TextBox^  leaderboardSearchTextbox;
-	private: System::Windows::Forms::Label^  leaderboardLabel1;
-	private: System::Windows::Forms::Label^  leaderboardYourNameLabel;
-	private: System::Windows::Forms::Label^  leaderboardYourPointsLabel;
-	private: System::Windows::Forms::Label^  leaderboardYourPlaceLabel;
-
-	private: System::Windows::Forms::Label^  leaderboardsPlaceLabel6;
-
-	private: System::Windows::Forms::Label^  leaderboardsPlaceLabel5;
-
-	private: System::Windows::Forms::Label^  leaderboardsPlaceLabel4;
-
-	private: System::Windows::Forms::Label^  leaderboardsPlaceLabel3;
-
-	private: System::Windows::Forms::Label^  leaderboardsPlaceLabel2;
-	private: System::Windows::Forms::Label^  leaderboardPointsLabel1;
-
-	private: System::Windows::Forms::Label^  leaderboardNameLabel1;
-	private: System::Windows::Forms::Label^  leaderboardPointsLabel6;
-
-	private: System::Windows::Forms::Label^  leaderboardPointsLabel5;
-
-	private: System::Windows::Forms::Label^  leaderboardPointsLabel4;
-
-	private: System::Windows::Forms::Label^  leaderboardPointsLabel3;
-
-	private: System::Windows::Forms::Label^  leaderboardPointsLabel2;
-
-	private: System::Windows::Forms::Label^  leaderboardNameLabel6;
-
-	private: System::Windows::Forms::Label^  leaderboardNameLabel5;
-
-	private: System::Windows::Forms::Label^  leaderboardNameLabel4;
-
-	private: System::Windows::Forms::Label^  leaderboardNameLabel3;
-
-	private: System::Windows::Forms::Label^  leaderboardNameLabel2;
 
 	private: System::Windows::Forms::Button^  game1Button;
 
@@ -159,6 +123,7 @@ namespace KSGGames {
 
 	private: System::Void leaderboardButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		menuPanel->Hide();
+		setLeaderboardInfo();
 		leaderboardPanel->Show();
 	}
 	private: System::Void leaderboardBackButton_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -283,6 +248,88 @@ namespace KSGGames {
 		}
 	}
 
+	private: void labelArrayInit(array<System::Windows::Forms::Label^, 2>^ leaderboardLabelArray) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 7; j++) {
+				System::Windows::Forms::Label^ leaderboardLabel = (gcnew System::Windows::Forms::Label());
+
+				leaderboardLabel->AutoSize = true;
+				leaderboardLabel->Parent = leaderboardListPanel;
+				leaderboardLabel->Font = (gcnew System::Drawing::Font(L"Rockwell", 17));
+				leaderboardLabel->Name = L"leaderboardPlaceLabel" + j;
+				leaderboardLabel->Size = System::Drawing::Size(10, 26);
+				leaderboardLabel->TabIndex = 69;
+
+				switch (i) {
+					
+					case 0: leaderboardLabel->Text = "";
+							leaderboardLabel->Location = System::Drawing::Point(7, 52 + j * 41);
+							leaderboardLabel->MaximumSize = System::Drawing::Size(55, 26);
+							break;
+					case 1: leaderboardLabel->Text = "";
+							leaderboardLabel->Location = System::Drawing::Point(62, 52 + j * 41);
+							leaderboardLabel->MaximumSize = System::Drawing::Size(205, 28);
+							break;
+					case 2: leaderboardLabel->Text = "";
+							leaderboardLabel->Location = System::Drawing::Point(252, 52 + j * 41);
+							leaderboardLabel->MaximumSize = System::Drawing::Size(84, 26);
+							leaderboardLabel->ForeColor = System::Drawing::Color::DodgerBlue;
+							break;
+				}
+
+				leaderboardLabelArray[i, j] = leaderboardLabel;
+				
+			}
+		}
+		
+	}
+	private: void setLeaderboardInfo() {
+		try {
+			MySqlConnection^ conn;
+			MySqlDataReader^ dr;
+			MySqlCommand^ cmd;
+			int userAmount = 0;
+			int location = 0;
+			String^ username;
+			int userPoints;
+			
+			/*
+			connectToSQL(conn);
+			cmd = gcnew MySqlCommand("SELECT count(*) FROM users", conn);
+			dr = cmd->ExecuteReader();
+			dr->Read();
+			userAmount = dr->GetInt32(0);
+			dr->Close();
+			conn->Close();
+			*/
+
+			connectToSQL(conn);
+			cmd = gcnew MySqlCommand("SELECT Username, Points FROM users ORDER BY Points DESC LIMIT 1000", conn);
+			dr = cmd->ExecuteReader();
+
+			while (dr->Read()) {
+				username = dr->GetString(0);
+				userPoints = dr->GetInt32(1);
+				MessageBox::Show("" + location + " username:" + username);
+				location++;
+
+				//leaderboardLabelArray(0, 0)->Text = "";
+ 			}
+			userAmount = location;
+
+			/*
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 7; j++) {
+
+				}
+			}*/
+			conn->Close();
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message);
+		}
+	}
+
 	private: void slideIn(System::Windows::Forms::Panel^ panel, int x, int y, int xTo) {
 		panel->Location = Point(x, y);
 		while (panel->Location.X > xTo) {
@@ -366,33 +413,12 @@ namespace KSGGames {
 				 this->userTextBox1 = (gcnew System::Windows::Forms::TextBox());
 				 this->leaderboardPanel = (gcnew System::Windows::Forms::Panel());
 				 this->leaderboardListPanel = (gcnew System::Windows::Forms::Panel());
-				 this->leaderboardsPlaceLabel1 = (gcnew System::Windows::Forms::Label());
 				 this->leaderboardListPointsLabel = (gcnew System::Windows::Forms::Label());
 				 this->leaderboardListNameLabel = (gcnew System::Windows::Forms::Label());
 				 this->leaderboardListPlaceLabel = (gcnew System::Windows::Forms::Label());
 				 this->leaderboardSearchTextbox = (gcnew System::Windows::Forms::TextBox());
 				 this->leaderboardLabel1 = (gcnew System::Windows::Forms::Label());
 				 this->leaderboardBackButton = (gcnew System::Windows::Forms::Button());
-				 this->leaderboardNameLabel1 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardPointsLabel1 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardsPlaceLabel2 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardsPlaceLabel3 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardsPlaceLabel4 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardsPlaceLabel5 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardsPlaceLabel6 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardYourPlaceLabel = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardYourPointsLabel = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardYourNameLabel = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardNameLabel2 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardNameLabel3 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardNameLabel4 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardNameLabel5 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardNameLabel6 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardPointsLabel2 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardPointsLabel3 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardPointsLabel4 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardPointsLabel5 = (gcnew System::Windows::Forms::Label());
-				 this->leaderboardPointsLabel6 = (gcnew System::Windows::Forms::Label());
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 				 this->menuPanel->SuspendLayout();
@@ -816,27 +842,6 @@ namespace KSGGames {
 				 // 
 				 this->leaderboardListPanel->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"leaderboardListPanel.BackgroundImage")));
 				 this->leaderboardListPanel->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardPointsLabel6);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardPointsLabel5);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardPointsLabel4);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardPointsLabel3);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardPointsLabel2);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardNameLabel6);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardNameLabel5);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardNameLabel4);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardNameLabel3);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardNameLabel2);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardYourNameLabel);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardYourPointsLabel);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardYourPlaceLabel);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardsPlaceLabel6);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardsPlaceLabel5);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardsPlaceLabel4);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardsPlaceLabel3);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardsPlaceLabel2);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardPointsLabel1);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardNameLabel1);
-				 this->leaderboardListPanel->Controls->Add(this->leaderboardsPlaceLabel1);
 				 this->leaderboardListPanel->Controls->Add(this->leaderboardListPointsLabel);
 				 this->leaderboardListPanel->Controls->Add(this->leaderboardListNameLabel);
 				 this->leaderboardListPanel->Controls->Add(this->leaderboardListPlaceLabel);
@@ -844,17 +849,6 @@ namespace KSGGames {
 				 this->leaderboardListPanel->Name = L"leaderboardListPanel";
 				 this->leaderboardListPanel->Size = System::Drawing::Size(347, 408);
 				 this->leaderboardListPanel->TabIndex = 17;
-				 // 
-				 // leaderboardsPlaceLabel1
-				 // 
-				 this->leaderboardsPlaceLabel1->AutoSize = true;
-				 this->leaderboardsPlaceLabel1->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardsPlaceLabel1->Location = System::Drawing::Point(7, 52);
-				 this->leaderboardsPlaceLabel1->Name = L"leaderboardsPlaceLabel1";
-				 this->leaderboardsPlaceLabel1->Size = System::Drawing::Size(55, 26);
-				 this->leaderboardsPlaceLabel1->TabIndex = 21;
-				 this->leaderboardsPlaceLabel1->Text = L"999.";
 				 // 
 				 // leaderboardListPointsLabel
 				 // 
@@ -924,249 +918,6 @@ namespace KSGGames {
 				 this->leaderboardBackButton->Text = L"BACK";
 				 this->leaderboardBackButton->UseVisualStyleBackColor = false;
 				 this->leaderboardBackButton->Click += gcnew System::EventHandler(this, &PgrMenu::leaderboardBackButton_Click);
-				 // 
-				 // leaderboardNameLabel1
-				 // 
-				 this->leaderboardNameLabel1->AutoSize = true;
-				 this->leaderboardNameLabel1->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardNameLabel1->Location = System::Drawing::Point(62, 52);
-				 this->leaderboardNameLabel1->MaximumSize = System::Drawing::Size(205, 28);
-				 this->leaderboardNameLabel1->Name = L"leaderboardNameLabel1";
-				 this->leaderboardNameLabel1->Size = System::Drawing::Size(196, 28);
-				 this->leaderboardNameLabel1->TabIndex = 22;
-				 this->leaderboardNameLabel1->Text = L"testName69420154";
-				 // 
-				 // leaderboardPointsLabel1
-				 // 
-				 this->leaderboardPointsLabel1->AutoSize = true;
-				 this->leaderboardPointsLabel1->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardPointsLabel1->ForeColor = System::Drawing::Color::DodgerBlue;
-				 this->leaderboardPointsLabel1->Location = System::Drawing::Point(252, 52);
-				 this->leaderboardPointsLabel1->MaximumSize = System::Drawing::Size(84, 26);
-				 this->leaderboardPointsLabel1->Name = L"leaderboardPointsLabel1";
-				 this->leaderboardPointsLabel1->Size = System::Drawing::Size(84, 26);
-				 this->leaderboardPointsLabel1->TabIndex = 23;
-				 this->leaderboardPointsLabel1->Text = L"226671";
-				 // 
-				 // leaderboardsPlaceLabel2
-				 // 
-				 this->leaderboardsPlaceLabel2->AutoSize = true;
-				 this->leaderboardsPlaceLabel2->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardsPlaceLabel2->Location = System::Drawing::Point(7, 97);
-				 this->leaderboardsPlaceLabel2->Name = L"leaderboardsPlaceLabel2";
-				 this->leaderboardsPlaceLabel2->Size = System::Drawing::Size(31, 26);
-				 this->leaderboardsPlaceLabel2->TabIndex = 24;
-				 this->leaderboardsPlaceLabel2->Text = L"1.";
-				 // 
-				 // leaderboardsPlaceLabel3
-				 // 
-				 this->leaderboardsPlaceLabel3->AutoSize = true;
-				 this->leaderboardsPlaceLabel3->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardsPlaceLabel3->Location = System::Drawing::Point(7, 147);
-				 this->leaderboardsPlaceLabel3->Name = L"leaderboardsPlaceLabel3";
-				 this->leaderboardsPlaceLabel3->Size = System::Drawing::Size(31, 26);
-				 this->leaderboardsPlaceLabel3->TabIndex = 25;
-				 this->leaderboardsPlaceLabel3->Text = L"1.";
-				 // 
-				 // leaderboardsPlaceLabel4
-				 // 
-				 this->leaderboardsPlaceLabel4->AutoSize = true;
-				 this->leaderboardsPlaceLabel4->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardsPlaceLabel4->Location = System::Drawing::Point(7, 197);
-				 this->leaderboardsPlaceLabel4->Name = L"leaderboardsPlaceLabel4";
-				 this->leaderboardsPlaceLabel4->Size = System::Drawing::Size(31, 26);
-				 this->leaderboardsPlaceLabel4->TabIndex = 26;
-				 this->leaderboardsPlaceLabel4->Text = L"1.";
-				 // 
-				 // leaderboardsPlaceLabel5
-				 // 
-				 this->leaderboardsPlaceLabel5->AutoSize = true;
-				 this->leaderboardsPlaceLabel5->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardsPlaceLabel5->Location = System::Drawing::Point(7, 246);
-				 this->leaderboardsPlaceLabel5->Name = L"leaderboardsPlaceLabel5";
-				 this->leaderboardsPlaceLabel5->Size = System::Drawing::Size(31, 26);
-				 this->leaderboardsPlaceLabel5->TabIndex = 27;
-				 this->leaderboardsPlaceLabel5->Text = L"1.";
-				 // 
-				 // leaderboardsPlaceLabel6
-				 // 
-				 this->leaderboardsPlaceLabel6->AutoSize = true;
-				 this->leaderboardsPlaceLabel6->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardsPlaceLabel6->Location = System::Drawing::Point(7, 298);
-				 this->leaderboardsPlaceLabel6->Name = L"leaderboardsPlaceLabel6";
-				 this->leaderboardsPlaceLabel6->Size = System::Drawing::Size(31, 26);
-				 this->leaderboardsPlaceLabel6->TabIndex = 28;
-				 this->leaderboardsPlaceLabel6->Text = L"1.";
-				 // 
-				 // leaderboardYourPlaceLabel
-				 // 
-				 this->leaderboardYourPlaceLabel->AutoSize = true;
-				 this->leaderboardYourPlaceLabel->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardYourPlaceLabel->ForeColor = System::Drawing::SystemColors::HighlightText;
-				 this->leaderboardYourPlaceLabel->Location = System::Drawing::Point(7, 365);
-				 this->leaderboardYourPlaceLabel->Name = L"leaderboardYourPlaceLabel";
-				 this->leaderboardYourPlaceLabel->Size = System::Drawing::Size(31, 26);
-				 this->leaderboardYourPlaceLabel->TabIndex = 29;
-				 this->leaderboardYourPlaceLabel->Text = L"1.";
-				 // 
-				 // leaderboardYourPointsLabel
-				 // 
-				 this->leaderboardYourPointsLabel->AutoSize = true;
-				 this->leaderboardYourPointsLabel->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardYourPointsLabel->ForeColor = System::Drawing::Color::MidnightBlue;
-				 this->leaderboardYourPointsLabel->Location = System::Drawing::Point(252, 365);
-				 this->leaderboardYourPointsLabel->MaximumSize = System::Drawing::Size(84, 26);
-				 this->leaderboardYourPointsLabel->Name = L"leaderboardYourPointsLabel";
-				 this->leaderboardYourPointsLabel->Size = System::Drawing::Size(84, 26);
-				 this->leaderboardYourPointsLabel->TabIndex = 30;
-				 this->leaderboardYourPointsLabel->Text = L"226671";
-				 // 
-				 // leaderboardYourNameLabel
-				 // 
-				 this->leaderboardYourNameLabel->AutoSize = true;
-				 this->leaderboardYourNameLabel->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardYourNameLabel->ForeColor = System::Drawing::SystemColors::HighlightText;
-				 this->leaderboardYourNameLabel->Location = System::Drawing::Point(44, 365);
-				 this->leaderboardYourNameLabel->MaximumSize = System::Drawing::Size(211, 28);
-				 this->leaderboardYourNameLabel->Name = L"leaderboardYourNameLabel";
-				 this->leaderboardYourNameLabel->Size = System::Drawing::Size(172, 26);
-				 this->leaderboardYourNameLabel->TabIndex = 31;
-				 this->leaderboardYourNameLabel->Text = L"testName69420";
-				 // 
-				 // leaderboardNameLabel2
-				 // 
-				 this->leaderboardNameLabel2->AutoSize = true;
-				 this->leaderboardNameLabel2->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardNameLabel2->Location = System::Drawing::Point(62, 97);
-				 this->leaderboardNameLabel2->MaximumSize = System::Drawing::Size(205, 28);
-				 this->leaderboardNameLabel2->Name = L"leaderboardNameLabel2";
-				 this->leaderboardNameLabel2->Size = System::Drawing::Size(92, 26);
-				 this->leaderboardNameLabel2->TabIndex = 32;
-				 this->leaderboardNameLabel2->Text = L"[Name]";
-				 // 
-				 // leaderboardNameLabel3
-				 // 
-				 this->leaderboardNameLabel3->AutoSize = true;
-				 this->leaderboardNameLabel3->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardNameLabel3->Location = System::Drawing::Point(62, 147);
-				 this->leaderboardNameLabel3->MaximumSize = System::Drawing::Size(205, 28);
-				 this->leaderboardNameLabel3->Name = L"leaderboardNameLabel3";
-				 this->leaderboardNameLabel3->Size = System::Drawing::Size(92, 26);
-				 this->leaderboardNameLabel3->TabIndex = 33;
-				 this->leaderboardNameLabel3->Text = L"[Name]";
-				 // 
-				 // leaderboardNameLabel4
-				 // 
-				 this->leaderboardNameLabel4->AutoSize = true;
-				 this->leaderboardNameLabel4->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardNameLabel4->Location = System::Drawing::Point(62, 197);
-				 this->leaderboardNameLabel4->MaximumSize = System::Drawing::Size(205, 28);
-				 this->leaderboardNameLabel4->Name = L"leaderboardNameLabel4";
-				 this->leaderboardNameLabel4->Size = System::Drawing::Size(92, 26);
-				 this->leaderboardNameLabel4->TabIndex = 34;
-				 this->leaderboardNameLabel4->Text = L"[Name]";
-				 // 
-				 // leaderboardNameLabel5
-				 // 
-				 this->leaderboardNameLabel5->AutoSize = true;
-				 this->leaderboardNameLabel5->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardNameLabel5->Location = System::Drawing::Point(62, 246);
-				 this->leaderboardNameLabel5->MaximumSize = System::Drawing::Size(205, 28);
-				 this->leaderboardNameLabel5->Name = L"leaderboardNameLabel5";
-				 this->leaderboardNameLabel5->Size = System::Drawing::Size(92, 26);
-				 this->leaderboardNameLabel5->TabIndex = 35;
-				 this->leaderboardNameLabel5->Text = L"[Name]";
-				 // 
-				 // leaderboardNameLabel6
-				 // 
-				 this->leaderboardNameLabel6->AutoSize = true;
-				 this->leaderboardNameLabel6->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardNameLabel6->Location = System::Drawing::Point(62, 298);
-				 this->leaderboardNameLabel6->MaximumSize = System::Drawing::Size(205, 28);
-				 this->leaderboardNameLabel6->Name = L"leaderboardNameLabel6";
-				 this->leaderboardNameLabel6->Size = System::Drawing::Size(92, 26);
-				 this->leaderboardNameLabel6->TabIndex = 36;
-				 this->leaderboardNameLabel6->Text = L"[Name]";
-				 // 
-				 // leaderboardPointsLabel2
-				 // 
-				 this->leaderboardPointsLabel2->AutoSize = true;
-				 this->leaderboardPointsLabel2->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardPointsLabel2->ForeColor = System::Drawing::Color::DodgerBlue;
-				 this->leaderboardPointsLabel2->Location = System::Drawing::Point(252, 97);
-				 this->leaderboardPointsLabel2->MaximumSize = System::Drawing::Size(84, 26);
-				 this->leaderboardPointsLabel2->Name = L"leaderboardPointsLabel2";
-				 this->leaderboardPointsLabel2->Size = System::Drawing::Size(48, 26);
-				 this->leaderboardPointsLabel2->TabIndex = 37;
-				 this->leaderboardPointsLabel2->Text = L"123";
-				 // 
-				 // leaderboardPointsLabel3
-				 // 
-				 this->leaderboardPointsLabel3->AutoSize = true;
-				 this->leaderboardPointsLabel3->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardPointsLabel3->ForeColor = System::Drawing::Color::DodgerBlue;
-				 this->leaderboardPointsLabel3->Location = System::Drawing::Point(252, 147);
-				 this->leaderboardPointsLabel3->MaximumSize = System::Drawing::Size(84, 26);
-				 this->leaderboardPointsLabel3->Name = L"leaderboardPointsLabel3";
-				 this->leaderboardPointsLabel3->Size = System::Drawing::Size(48, 26);
-				 this->leaderboardPointsLabel3->TabIndex = 38;
-				 this->leaderboardPointsLabel3->Text = L"123";
-				 // 
-				 // leaderboardPointsLabel4
-				 // 
-				 this->leaderboardPointsLabel4->AutoSize = true;
-				 this->leaderboardPointsLabel4->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardPointsLabel4->ForeColor = System::Drawing::Color::DodgerBlue;
-				 this->leaderboardPointsLabel4->Location = System::Drawing::Point(252, 197);
-				 this->leaderboardPointsLabel4->MaximumSize = System::Drawing::Size(84, 26);
-				 this->leaderboardPointsLabel4->Name = L"leaderboardPointsLabel4";
-				 this->leaderboardPointsLabel4->Size = System::Drawing::Size(48, 26);
-				 this->leaderboardPointsLabel4->TabIndex = 39;
-				 this->leaderboardPointsLabel4->Text = L"123";
-				 // 
-				 // leaderboardPointsLabel5
-				 // 
-				 this->leaderboardPointsLabel5->AutoSize = true;
-				 this->leaderboardPointsLabel5->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardPointsLabel5->ForeColor = System::Drawing::Color::DodgerBlue;
-				 this->leaderboardPointsLabel5->Location = System::Drawing::Point(252, 246);
-				 this->leaderboardPointsLabel5->MaximumSize = System::Drawing::Size(84, 26);
-				 this->leaderboardPointsLabel5->Name = L"leaderboardPointsLabel5";
-				 this->leaderboardPointsLabel5->Size = System::Drawing::Size(48, 26);
-				 this->leaderboardPointsLabel5->TabIndex = 40;
-				 this->leaderboardPointsLabel5->Text = L"123";
-				 // 
-				 // leaderboardPointsLabel6
-				 // 
-				 this->leaderboardPointsLabel6->AutoSize = true;
-				 this->leaderboardPointsLabel6->Font = (gcnew System::Drawing::Font(L"Rockwell", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					 static_cast<System::Byte>(0)));
-				 this->leaderboardPointsLabel6->ForeColor = System::Drawing::Color::DodgerBlue;
-				 this->leaderboardPointsLabel6->Location = System::Drawing::Point(252, 298);
-				 this->leaderboardPointsLabel6->MaximumSize = System::Drawing::Size(84, 26);
-				 this->leaderboardPointsLabel6->Name = L"leaderboardPointsLabel6";
-				 this->leaderboardPointsLabel6->Size = System::Drawing::Size(48, 26);
-				 this->leaderboardPointsLabel6->TabIndex = 41;
-				 this->leaderboardPointsLabel6->Text = L"123";
 				 // 
 				 // PgrMenu
 				 // 
