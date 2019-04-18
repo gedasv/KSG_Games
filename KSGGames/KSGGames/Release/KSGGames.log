@@ -1,29 +1,15 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.MetaGen.targets(91,5): warning : Required file "C:\PROGRAM FILES (X86)\MYSQL\CONNECTOR NET 8.0\ASSEMBLIES\V4.5.2\MYSQL.DATA.DLL" is missing.
-  Chess.cpp
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess.h(368): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  chess_bot.cpp
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_bot.cpp(35): warning C4018: '<': signed/unsigned mismatch
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_bot.cpp(94): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_bot.cpp(95): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_bot.cpp(96): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_bot.cpp(97): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_bot.cpp(102): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_bot.cpp(103): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_bot.cpp(104): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_bot.cpp(105): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_bot.cpp(249): warning C4018: '<': signed/unsigned mismatch
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_bot.cpp(276): warning C4018: '<': signed/unsigned mismatch
-  chess_rules.cpp
+﻿  Chess.cpp
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess.h(368): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  ChessPrac.cpp
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Login.cpp
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess.h(368): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  Minesweeper.cpp
-  Monopoly.cpp
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess.h(368): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   PgrMenu.cpp
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess.h(368): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess.h(368): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   START.cpp
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess.h(368): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  user.cpp
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess.h(368): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Generating Code...
-c:\users\kciul\desktop\new folder\ksggames\ksggames\chess_rules.cpp(391): warning C4715: 'changeEndPawn': not all control paths return a value
-  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
-  KSGGames.vcxproj -> C:\Users\kciul\Desktop\New folder\KSGGames\Release\KSGGames.exe
+  KSGGames.vcxproj -> C:\Users\kciul\Desktop\KSGGames\KSGGames\Release\KSGGames.exe

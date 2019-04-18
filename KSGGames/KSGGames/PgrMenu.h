@@ -1,8 +1,8 @@
 #pragma once
 //#include "Login.h";
 #include "Chess.h"
-#include "Minesweeper.h"
 #include "user.h"
+#include "ChessPrac.h"
 
 namespace KSGGames {
 	using namespace System;
@@ -135,14 +135,8 @@ namespace KSGGames {
 		chessGame->Show();
 	}
 	private: System::Void gamesVSPlayerButton_Click(System::Object^  sender, System::EventArgs^  e) {
-		/*
-		Chess ^ chessGame = gcnew Chess;
+		ChessPrac ^ chessGame = gcnew ChessPrac;
 		chessGame->Show();
-		*/
-	}
-	private: System::Void MinesweeperGame(System::Object^  sender, System::EventArgs^  e) {
-		Minesweeper ^ minesweeperGame = gcnew Minesweeper;
-		minesweeperGame->Show();
 	}
 
 	private: System::Void leaderboardButton_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -672,7 +666,7 @@ namespace KSGGames {
 				 this->game2Button->TabIndex = 5;
 				 this->game2Button->Text = L"MINESWEEPER";
 				 this->game2Button->UseVisualStyleBackColor = false;
-				 this->game2Button->Click += gcnew System::EventHandler(this, &PgrMenu::MinesweeperGame);
+				 //this->game2Button->Click += gcnew System::EventHandler(this, &PgrMenu::MinesweeperGame);
 				 // 
 				 // game1Button
 				 // 

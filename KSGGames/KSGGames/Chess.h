@@ -127,7 +127,7 @@ namespace KSGGames {
 		}
 
 		bool move = whitesMove;
-		if (nextBotMove(Chess_Board, move, 1))
+		if (nextBotMove(Chess_Board, move, 2))
 		{
 			whitesMove = !whitesMove;
 			clearMoved(Chess_Board, whitesMove);
@@ -348,8 +348,8 @@ namespace KSGGames {
 		if (y == 0) picture = "white" + type;
 		else picture = "black" + type;
 
-		String^ typeS = msclr::interop::marshal_as<String^>(picture);
-		Board[x, y]->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(typeS)));
+		String^ Types = msclr::interop::marshal_as<String^>(picture);
+		Board[x, y]->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(Types)));
 
 		botMove();
 	}

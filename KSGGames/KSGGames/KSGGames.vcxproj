@@ -135,11 +135,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Chess.cpp" />
+    <ClCompile Include="ChessPrac.cpp" />
     <ClCompile Include="chess_bot.cpp" />
     <ClCompile Include="chess_rules.cpp" />
     <ClCompile Include="Login.cpp" />
-    <ClCompile Include="Minesweeper.cpp" />
-    <ClCompile Include="Monopoly.cpp" />
     <ClCompile Include="PgrMenu.cpp" />
     <ClCompile Include="START.cpp" />
     <ClCompile Include="user.cpp" />
@@ -148,15 +147,9 @@
     <ClInclude Include="Chess.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ChessPrac.h" />
     <ClInclude Include="chess_bot.h" />
     <ClInclude Include="chess_rules.h" />
-    <ClInclude Include="Minesweeper.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="minesweeper_rules.h" />
-    <ClInclude Include="Monopoly.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="Login.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -173,14 +166,9 @@
       <DependentUpon>Chess.h</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChessPrac.resx" />
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Minesweeper.resx">
-      <DependentUpon>Minesweeper.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Monopoly.resx">
-      <DependentUpon>Monopoly.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PgrMenu.resx">
       <DependentUpon>PgrMenu.h</DependentUpon>

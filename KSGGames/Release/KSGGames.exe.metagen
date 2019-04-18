@@ -1,7 +1,6 @@
   KSGGames.Chess.resources - Embedded, ContainedInManifestFile, 
+  KSGGames.ChessPrac.resources - Embedded, ContainedInManifestFile, 
   KSGGames.Login.resources - Embedded, ContainedInManifestFile, 
-  KSGGames.Minesweeper.resources - Embedded, ContainedInManifestFile, 
-  KSGGames.Monopoly.resources - Embedded, ContainedInManifestFile, 
   KSGGames.PgrMenu.resources - Embedded, ContainedInManifestFile, 
   KSGGames.START.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
@@ -26,9 +25,7 @@ Struct Square: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, B
 Class KSGGames.Chess: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Struct Tile: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
-  :System.ValueType
-Class KSGGames.Minesweeper: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+Class KSGGames.ChessPrac: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Struct User: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
@@ -37,9 +34,6 @@ Class KSGGames.PgrMenu: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class KSGGames.Login: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :System.Windows.Forms.Form
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class KSGGames.Monopoly: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class KSGGames.START: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit

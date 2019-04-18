@@ -33,13 +33,10 @@
     <ClCompile Include="chess_bot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Monopoly.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Minesweeper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="user.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ChessPrac.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,16 +59,10 @@
     <ClInclude Include="chess_rules.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Monopoly.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Minesweeper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="minesweeper_rules.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="user.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChessPrac.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -88,11 +79,8 @@
     <EmbeddedResource Include="Chess.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
-    <EmbeddedResource Include="Monopoly.resx">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Minesweeper.resx">
-      <Filter>Resource Files</Filter>
+    <EmbeddedResource Include="ChessPrac.resx">
+      <Filter>Header Files</Filter>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
