@@ -99,6 +99,10 @@ namespace KSGGames {
 
 	private: System::Windows::Forms::Label^  leaderboardYourLabel1;
 	private: System::Windows::Forms::Label^  leaderboardYouAreLabel;
+	private: System::Windows::Forms::Button^  gamesVSPlayerButton;
+	private: System::Windows::Forms::Button^  gamesVSBotButton;
+
+
 
 
 
@@ -112,14 +116,29 @@ namespace KSGGames {
 	private: System::Void gamesButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		menuPanel->Hide();
 		gamesPanel->Show();
+		gamesVSBotButton->Visible = false;
+		gamesVSPlayerButton->Visible = false;
 	}
 	private: System::Void gamesBackButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		gamesPanel->Hide();
 		menuPanel->Show();
+
 	}
 	private: System::Void ChessGame(System::Object^  sender, System::EventArgs^  e) {
+		gamesVSBotButton->Visible = true;
+		gamesVSPlayerButton->Visible = true;
+
+	}
+	private: System::Void gamesVSBotButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		
 		Chess ^ chessGame = gcnew Chess;
 		chessGame->Show();
+	}
+	private: System::Void gamesVSPlayerButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		/*
+		Chess ^ chessGame = gcnew Chess;
+		chessGame->Show();
+		*/
 	}
 	private: System::Void MinesweeperGame(System::Object^  sender, System::EventArgs^  e) {
 		Minesweeper ^ minesweeperGame = gcnew Minesweeper;
@@ -180,7 +199,6 @@ namespace KSGGames {
 			MySqlCommand ^cmd1, ^cmd2;
 			int i = 0, i2 = 0, rowAmount = 0, userPlace = 0;
 			leaderboardFoundNames = gcnew array<String^, 1>(7);
-			String^ correctName;
 			String^ userUsername = gcnew String(user.GetName().c_str());
 			for (int i = 0; i < 3; i++) 
 				for (int j = 0; j < 7; j++) 
@@ -188,6 +206,7 @@ namespace KSGGames {
 
 			connectToSQL(conn);
 
+			// while loop kad rasti kurioje vietoje yra user ir suskaiciuoti db diduma
 			cmd1 = gcnew MySqlCommand("SELECT Username, Points FROM users ORDER BY Points DESC LIMIT 1000", conn);
 			dr = cmd1->ExecuteReader();
 			while (dr->Read()) {
@@ -421,6 +440,8 @@ namespace KSGGames {
 				 this->friendsButton = (gcnew System::Windows::Forms::Button());
 				 this->menuPanel = (gcnew System::Windows::Forms::Panel());
 				 this->gamesPanel = (gcnew System::Windows::Forms::Panel());
+				 this->gamesVSPlayerButton = (gcnew System::Windows::Forms::Button());
+				 this->gamesVSBotButton = (gcnew System::Windows::Forms::Button());
 				 this->gamesBackButton = (gcnew System::Windows::Forms::Button());
 				 this->game3Button = (gcnew System::Windows::Forms::Button());
 				 this->game2Button = (gcnew System::Windows::Forms::Button());
@@ -564,6 +585,8 @@ namespace KSGGames {
 				 // gamesPanel
 				 // 
 				 this->gamesPanel->BackColor = System::Drawing::Color::Transparent;
+				 this->gamesPanel->Controls->Add(this->gamesVSPlayerButton);
+				 this->gamesPanel->Controls->Add(this->gamesVSBotButton);
 				 this->gamesPanel->Controls->Add(this->gamesBackButton);
 				 this->gamesPanel->Controls->Add(this->game3Button);
 				 this->gamesPanel->Controls->Add(this->game2Button);
@@ -572,6 +595,38 @@ namespace KSGGames {
 				 this->gamesPanel->Name = L"gamesPanel";
 				 this->gamesPanel->Size = System::Drawing::Size(428, 705);
 				 this->gamesPanel->TabIndex = 8;
+				 // 
+				 // gamesVSPlayerButton
+				 // 
+				 this->gamesVSPlayerButton->BackColor = System::Drawing::Color::Transparent;
+				 this->gamesVSPlayerButton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"gamesVSPlayerButton.BackgroundImage")));
+				 this->gamesVSPlayerButton->FlatStyle = System::Windows::Forms::FlatStyle::System;
+				 this->gamesVSPlayerButton->Font = (gcnew System::Drawing::Font(L"Rockwell", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
+				 this->gamesVSPlayerButton->Location = System::Drawing::Point(213, 101);
+				 this->gamesVSPlayerButton->Name = L"gamesVSPlayerButton";
+				 this->gamesVSPlayerButton->Size = System::Drawing::Size(145, 58);
+				 this->gamesVSPlayerButton->TabIndex = 10;
+				 this->gamesVSPlayerButton->Text = L"Local";
+				 this->gamesVSPlayerButton->UseVisualStyleBackColor = false;
+				 this->gamesVSPlayerButton->Visible = false;
+				 this->gamesVSPlayerButton->Click += gcnew System::EventHandler(this, &PgrMenu::gamesVSPlayerButton_Click);
+				 // 
+				 // gamesVSBotButton
+				 // 
+				 this->gamesVSBotButton->BackColor = System::Drawing::Color::Transparent;
+				 this->gamesVSBotButton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"gamesVSBotButton.BackgroundImage")));
+				 this->gamesVSBotButton->FlatStyle = System::Windows::Forms::FlatStyle::System;
+				 this->gamesVSBotButton->Font = (gcnew System::Drawing::Font(L"Rockwell", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					 static_cast<System::Byte>(0)));
+				 this->gamesVSBotButton->Location = System::Drawing::Point(67, 101);
+				 this->gamesVSBotButton->Name = L"gamesVSBotButton";
+				 this->gamesVSBotButton->Size = System::Drawing::Size(148, 58);
+				 this->gamesVSBotButton->TabIndex = 9;
+				 this->gamesVSBotButton->Text = L"A.I.";
+				 this->gamesVSBotButton->UseVisualStyleBackColor = false;
+				 this->gamesVSBotButton->Visible = false;
+				 this->gamesVSBotButton->Click += gcnew System::EventHandler(this, &PgrMenu::gamesVSBotButton_Click);
 				 // 
 				 // gamesBackButton
 				 // 
@@ -600,13 +655,14 @@ namespace KSGGames {
 				 this->game3Button->Name = L"game3Button";
 				 this->game3Button->Size = System::Drawing::Size(291, 58);
 				 this->game3Button->TabIndex = 6;
-				 this->game3Button->Text = L"GAME3";
+				 this->game3Button->Text = L"MONOPOLY";
 				 this->game3Button->UseVisualStyleBackColor = false;
 				 // 
 				 // game2Button
 				 // 
 				 this->game2Button->BackColor = System::Drawing::Color::Transparent;
 				 this->game2Button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"game2Button.BackgroundImage")));
+				 this->game2Button->Enabled = false;
 				 this->game2Button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 				 this->game2Button->Font = (gcnew System::Drawing::Font(L"Rockwell", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					 static_cast<System::Byte>(0)));
@@ -981,7 +1037,7 @@ namespace KSGGames {
 				 this->leaderboardSearchTextbox->Location = System::Drawing::Point(78, 80);
 				 this->leaderboardSearchTextbox->Name = L"leaderboardSearchTextbox";
 				 this->leaderboardSearchTextbox->Size = System::Drawing::Size(291, 32);
-				 this->leaderboardSearchTextbox->TabIndex = 16;
+				 this->leaderboardSearchTextbox->TabIndex = 1;
 				 this->leaderboardSearchTextbox->TextChanged += gcnew System::EventHandler(this, &PgrMenu::leaderboardSearchTextbox_TextChanged);
 				 // 
 				 // leaderboardLabel1
@@ -1016,10 +1072,10 @@ namespace KSGGames {
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 				 this->ClientSize = System::Drawing::Size(463, 750);
-				 this->Controls->Add(this->leaderboardPanel);
-				 this->Controls->Add(this->menuPanel);
 				 this->Controls->Add(this->gamesPanel);
 				 this->Controls->Add(this->userPanel);
+				 this->Controls->Add(this->leaderboardPanel);
+				 this->Controls->Add(this->menuPanel);
 				 this->Cursor = System::Windows::Forms::Cursors::Default;
 				 this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::Fixed3D;
 				 this->MaximizeBox = false;
@@ -1044,6 +1100,7 @@ namespace KSGGames {
 
 			 }
 #pragma endregion
+
 
 
 
