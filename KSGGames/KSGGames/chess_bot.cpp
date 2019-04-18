@@ -254,6 +254,8 @@ float nextBot(changedMap Board[8][8], bool whitesMove, int turnsAhead)
 		}
 	}
 
+	if (Values.size() == 0) best = 9999;
+
 	return best;
 }
 
@@ -280,6 +282,8 @@ float nextEnemy(changedMap Board[8][8], bool whitesMove, int turnsAhead)
 			worst = Values[i];
 		}
 	}
+
+	if (Values.size() == 0) worst = -9999;
 
 	return worst;
 }
