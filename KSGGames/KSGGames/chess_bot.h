@@ -27,4 +27,4 @@ bool legalMove(changedMap Board[8][8], int xFrom, int yFrom, int xTo, int yTo, b
 bool pieceHere(changedMap Board[8][8], int x, int y);
 bool teamPieceHere(changedMap Board[8][8], int x, int y, bool whiteTeam);
 bool nextBotMove(Square Board[8][8], bool whitesMove, int turnsAhead);
-bool notCheckmate(Square Board[8][8], bool whitesMove);
+bool ableToMove(Square Board[8][8], bool whitesMove);

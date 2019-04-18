@@ -116,7 +116,7 @@ namespace KSGGames {
 			}
 		}
 
-	private: System::Void botMove() // chess.com 1lvl (0-1-2)
+	private: System::Void botMove()
 	{
 		for (int i = 0; i < 8; i++)
 		{
@@ -146,7 +146,7 @@ namespace KSGGames {
 			copyArr(Chess_Board, Test_Board);
 
 			bool move = whitesMove;
-			if (!notCheckmate(Test_Board, move))
+			if (!ableToMove(Test_Board, move))
 			{
 				for (int i = 0; i < 8; i++)
 				{
@@ -156,8 +156,11 @@ namespace KSGGames {
 					}
 				}
 
+				move = !move;
+				if (checkAfter(Test_Board, move)) this->winText->Text = "YOU LOSE!";
+				else this->winText->Text = "DRAW";
+
 				this->winText->Show();
-				this->winText->Text = "YOU LOSE!";
 			}
 
 			else
@@ -174,6 +177,10 @@ namespace KSGGames {
 
 		else
 		{
+			copyArr(Chess_Board, Test_Board);
+
+			bool move = !whitesMove;
+
 			for (int i = 0; i < 8; i++)
 			{
 				for (int j = 0; j < 8; j++)
@@ -182,8 +189,10 @@ namespace KSGGames {
 				}
 			}
 
+			if (checkAfter(Test_Board, move)) this->winText->Text = "YOU WIN!";
+			else this->winText->Text = "DRAW";
+
 			this->winText->Show();
-			this->winText->Text = "YOU WIN!";
 		}
 	}
 

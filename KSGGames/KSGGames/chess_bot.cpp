@@ -81,7 +81,7 @@ float calcPos(changedMap Board[8][8], bool whitesMove)
 			{
 				float numb = 0;
 
-				if(type == "King") numb = 1000;
+				if (type == "King") numb = 1000;
 				else if (type == "Queen") numb = 9;
 				else if (type == "Rook") numb = 5;
 				else if (type == "Bishop") numb = 3.25;
@@ -89,10 +89,21 @@ float calcPos(changedMap Board[8][8], bool whitesMove)
 				else if (type == "Pawn" && j == 7) numb = 9;
 				else if (type == "Pawn") numb = 1;
 
-				if (i == 0 || i == 7 || j == 0 || j == 7) numb += -0.15;
-				else if (i == 1 || i == 6 || j == 1 || j == 6) numb += -0.05;
-				else if (i == 2 || i == 5 || j == 2 || j == 5) numb += 0.05;
-				else numb += 0.15;
+				if (type == "King")
+				{
+					if (i == 0 || i == 7 || j == 0 || j == 7) numb += 0.15;
+					else if (i == 1 || i == 6 || j == 1 || j == 6) numb += 0.05;
+					else if (i == 2 || i == 5 || j == 2 || j == 5) numb += -0.05;
+					else numb += -0.15;
+				}
+
+				else
+				{
+					if (i == 0 || i == 7 || j == 0 || j == 7) numb += -0.15;
+					else if (i == 1 || i == 6 || j == 1 || j == 6) numb += -0.05;
+					else if (i == 2 || i == 5 || j == 2 || j == 5) numb += 0.05;
+					else numb += 0.15;
+				}
 
 				if ((team == "white" && !whitesMove) || (team == "black" && whitesMove)) numb *= -1;
 
@@ -144,17 +155,15 @@ bool generateMove(changedMap Board[8][8], bool whitesMove, int &fromTo)
 
 							if (xTo == xFrom)
 							{
-								if (!pieceHere(Board, xTo, yTo) && legalMove(Board, xFrom, yFrom, xTo, yTo, whitesMove))
+								if (legalMove(Board, xFrom, yFrom, xTo, yTo, whitesMove))
 								{
-									basicMove(Board, xFrom, yFrom, xTo, yTo);
 									fromTo = (1000 * xFrom) + (100 * yFrom) + (10 * xTo) + yTo;
 									return true;
 								}
 							}
 
-							else if(teamPieceHere(Board, xTo, yTo, enemyTeam) && legalMove(Board, xFrom, yFrom, xTo, yTo, whitesMove))
+							else if(legalMove(Board, xFrom, yFrom, xTo, yTo, whitesMove))
 							{
-								basicMove(Board, xFrom, yFrom, xTo, yTo);
 								fromTo = (1000 * xFrom) + (100 * yFrom) + (10 * xTo) + yTo;
 								return true;
 							}
@@ -166,9 +175,8 @@ bool generateMove(changedMap Board[8][8], bool whitesMove, int &fromTo)
 						if (obj.Team() == "black") yTo = 3;
 						else yTo = 4;
 
-						if (!pieceHere(Board, xFrom, yTo) && !pieceHere(Board, xFrom, (abs(yTo - yFrom) / 2)) && legalMove(Board, xFrom, yFrom, xFrom, yTo, whitesMove))
+						if (legalMove(Board, xFrom, yFrom, xFrom, yTo, whitesMove))
 						{
-							basicMove(Board, xFrom, yFrom, xFrom, yTo);
 							fromTo = (1000 * xFrom) + (100 * yFrom) + (10 * xFrom) + yTo;
 							return true;
 						}
@@ -355,7 +363,7 @@ void basicMove(changedMap Board[8][8], int xFrom, int yFrom, int xTo, int yTo)
 	Board[xTo][yTo].changedSquare = objTo;
 }
 
-bool notCheckmate(Square Board[8][8], bool whitesMove)
+bool ableToMove(Square Board[8][8], bool whitesMove)
 {
 	changedMap newMap1[8][8];
 	for (int i = 0; i < 8; i++)
