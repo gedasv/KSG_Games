@@ -3,6 +3,7 @@
 #include "chess_rules.h"
 #include "chess_bot.h"
 #include "msclr\marshal_cppstd.h"
+#include "user.h"
 
 namespace KSGGames {
 
@@ -18,21 +19,21 @@ namespace KSGGames {
 		Square Chess_Board[8][8];
 		Square Test_Board[8][8];
 		std::string Types[9];
+		User player;
 	}
 
 	/// <summary>
 	/// Summary for Chess
-	/// </summary>	
+	/// </summary>
 	public ref class Chess : public System::Windows::Forms::Form
 	{
 
 	public:
-		Chess(void)
+		Chess(int id)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+
+			player.initUser(id);
 
 			this->winText->Hide();
 
@@ -87,7 +88,7 @@ namespace KSGGames {
 					Board[i, j] = startBoxInit(Board[i, j], i * 80 + 40, j * 80 + 40, box);
 					Board[i, j] = addBoardClick(Board[i, j]);
 				}
-			} 
+			}
 
 			for (int i = 0; i < 8; i++)
 			{
@@ -127,7 +128,7 @@ namespace KSGGames {
 		}
 
 		bool move = whitesMove;
-		if (nextBotMove(Chess_Board, move, 2))
+		if (nextBotMove(Chess_Board, move, 1))
 		{
 			whitesMove = !whitesMove;
 			clearMoved(Chess_Board, whitesMove);
@@ -157,7 +158,11 @@ namespace KSGGames {
 				}
 
 				move = !move;
-				if (checkAfter(Test_Board, move)) this->winText->Text = "YOU LOSE!";
+				if (checkAfter(Test_Board, move)) {
+					this->winText->Text = "YOU LOSE!";
+					player.configurePoints(-5);
+				}
+					
 				else this->winText->Text = "DRAW";
 
 				this->winText->Show();
@@ -189,7 +194,11 @@ namespace KSGGames {
 				}
 			}
 
-			if (checkAfter(Test_Board, move)) this->winText->Text = "YOU WIN!";
+			if (checkAfter(Test_Board, move)) {
+				this->winText->Text = "YOU WIN!";
+				player.configurePoints(5);
+			}
+
 			else this->winText->Text = "DRAW";
 
 			this->winText->Show();
@@ -434,10 +443,29 @@ namespace KSGGames {
 			 array<System::Windows::Forms::PictureBox^, 2>^ ChangePawn;
 			 bool whitesMove;
 
-	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Label^  winText;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+private: System::Windows::Forms::Button^  button1;
+private: System::Windows::Forms::Label^  winText;
+
+
 
 	protected:
+
 
 	protected:
 

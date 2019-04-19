@@ -21,8 +21,22 @@ void User::initUser(int ID) {
 	id = ID;
 	admin = dr->GetBoolean(1);
 	username = msclr::interop::marshal_as<std::string>(dr->GetString(2));
-	email = msclr::interop::marshal_as<std::string>(dr->GetString(4));
+	email = msclr::interop::marshal_as<std::string>(dr->GetString(3));
+	password = msclr::interop::marshal_as<std::string>(dr->GetString(4));
 	points = dr->GetInt32(5);
+
+	conn->Close();
+}
+
+void User::configurePoints(int amount) {
+	MySqlConnection^ conn;
+	MySqlDataReader^ dr;
+	MySqlCommand^ cmd;
+	connectToSQL(conn);
+
+	points += amount;
+	cmd = gcnew MySqlCommand("UPDATE users SET Points=" + points + " WHERE id=" + id + "", conn);
+	cmd->ExecuteReader();
 
 	conn->Close();
 }
@@ -32,3 +46,4 @@ void connectToSQL(MySqlConnection^ &conn) {
 	conn = gcnew MySqlConnection(connectionInfo);
 	conn->Open();
 }
+

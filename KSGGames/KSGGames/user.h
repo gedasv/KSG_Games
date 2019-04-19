@@ -21,12 +21,16 @@ public:
 	int points;
 
 	void initUser(int ID);
+	void configurePoints(int amount);
+
 	int GetId() { return id; }
 	std::string GetName() { return username; }
 	std::string GetEmail() { return email; }
 	std::string GetPassword() { return password; }
 	
+
 	void SetPassword(std::string str) { password = str; }
+	
 };
 
 void connectToSQL(MySqlConnection^ &conn);
