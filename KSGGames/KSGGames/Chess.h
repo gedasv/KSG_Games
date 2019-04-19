@@ -22,7 +22,7 @@ namespace KSGGames {
 
 	/// <summary>
 	/// Summary for Chess
-	/// </summary>
+	/// </summary>	
 	public ref class Chess : public System::Windows::Forms::Form
 	{
 
@@ -87,7 +87,7 @@ namespace KSGGames {
 					Board[i, j] = startBoxInit(Board[i, j], i * 80 + 40, j * 80 + 40, box);
 					Board[i, j] = addBoardClick(Board[i, j]);
 				}
-			}
+			} 
 
 			for (int i = 0; i < 8; i++)
 			{
@@ -434,29 +434,10 @@ namespace KSGGames {
 			 array<System::Windows::Forms::PictureBox^, 2>^ ChangePawn;
 			 bool whitesMove;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-private: System::Windows::Forms::Button^  button1;
-private: System::Windows::Forms::Label^  winText;
-
-
+	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Label^  winText;
 
 	protected:
-
 
 	protected:
 
