@@ -30,7 +30,6 @@ void User::initUser(int ID) {
 
 void User::configurePoints(int amount) {
 	MySqlConnection^ conn;
-	MySqlDataReader^ dr;
 	MySqlCommand^ cmd;
 	connectToSQL(conn);
 

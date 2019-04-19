@@ -519,6 +519,7 @@ private: System::Windows::Forms::Label^  winText;
 			this->Controls->Add(this->button1);
 			this->Name = L"Chess";
 			this->Text = L"Chess";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Chess::Chess_FormClosing);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -527,6 +528,9 @@ private: System::Windows::Forms::Label^  winText;
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	this->button1->Enabled = false;
 	botMove();
+}
+private: System::Void Chess_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+	player.configurePoints(-5);
 }
 };
 }

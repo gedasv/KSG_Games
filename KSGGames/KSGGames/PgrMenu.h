@@ -303,7 +303,6 @@ namespace KSGGames {
 	private: System::Void userChangePassButton2_Click(System::Object^  sender, System::EventArgs^  e) {
 		String^ password = gcnew String(user.GetPassword().c_str());
 		MySqlConnection^ conn;
-		MySqlDataReader^ dr;
 		MySqlCommand^ cmd;
 		connectToSQL(conn);
 
@@ -372,7 +371,7 @@ namespace KSGGames {
 	}
 
 	private: System::Void infoButton_Click(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("'KSG Games' made by Gediminas Vasiliauskas and Kristijonas Ciulcinskas");
+		MessageBox::Show("'KSG Games' was made by Gediminas and Kristijonas 2019 P7/3R");
 	}
 
 	private: void slideIn(System::Windows::Forms::Panel^ panel, int x, int y, int xTo) {

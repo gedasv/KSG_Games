@@ -1,34 +1,12 @@
-﻿  Chess.cpp
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess.h(377): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  ChessPrac.cpp
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  chess_bot.cpp
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_bot.cpp(35): warning C4018: '<': signed/unsigned mismatch
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_bot.cpp(94): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_bot.cpp(95): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_bot.cpp(96): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_bot.cpp(97): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_bot.cpp(102): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_bot.cpp(103): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_bot.cpp(104): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_bot.cpp(105): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_bot.cpp(249): warning C4018: '<': signed/unsigned mismatch
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_bot.cpp(278): warning C4018: '<': signed/unsigned mismatch
-  chess_rules.cpp
-  Login.cpp
+﻿  Login.cpp
 c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess.h(377): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\pgrmenu.h(306): warning C4101: 'dr': unreferenced local variable
   PgrMenu.cpp
 c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess.h(377): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\pgrmenu.h(306): warning C4101: 'dr': unreferenced local variable
   START.cpp
 c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess.h(377): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\pgrmenu.h(306): warning C4101: 'dr': unreferenced local variable
   user.cpp
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\user.cpp(33): warning C4101: 'dr': unreferenced local variable
   Generating Code...
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess_rules.cpp(391): warning C4715: 'changeEndPawn': not all control paths return a value
   KSGGames.vcxproj -> C:\Users\gedas\Desktop\ksggameesese\KSGGames\Release\KSGGames.exe
