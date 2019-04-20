@@ -83,4 +83,9 @@
       <Filter>Header Files</Filter>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

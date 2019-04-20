@@ -1,12 +1,11 @@
 ﻿  Login.cpp
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess.h(377): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kciul\desktop\jkm\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kciul\desktop\jkm\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   PgrMenu.cpp
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess.h(377): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kciul\desktop\jkm\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kciul\desktop\jkm\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   START.cpp
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chess.h(377): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\gedas\desktop\ksggameesese\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  user.cpp
+c:\users\kciul\desktop\jkm\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kciul\desktop\jkm\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Generating Code...
-  KSGGames.vcxproj -> C:\Users\gedas\Desktop\ksggameesese\KSGGames\Release\KSGGames.exe
+  KSGGames.vcxproj -> C:\Users\kciul\Desktop\JKM\KSGGames\Release\KSGGames.exe

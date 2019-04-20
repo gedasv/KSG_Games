@@ -210,8 +210,6 @@ namespace KSGGames {
 							ChangePawn[i, j] = addChoosePawn(ChangePawn[i, j]);
 						}
 					}
-
-
 				}
 			}
 
@@ -365,29 +363,6 @@ namespace KSGGames {
 			 array<System::Windows::Forms::PictureBox^, 2>^ ChangePawn;
 			 bool whitesMove;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	protected:
-
-
-	protected:
-
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -411,7 +386,6 @@ namespace KSGGames {
 			this->Name = L"Chess";
 			this->Text = L"Chess";
 			this->ResumeLayout(false);
-
 		}
 #pragma endregion
 

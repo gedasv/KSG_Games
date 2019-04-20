@@ -158,12 +158,13 @@ namespace KSGGames {
 				}
 
 				move = !move;
-				if (checkAfter(Test_Board, move)) {
-					this->winText->Text = "YOU LOSE!";
-					player.configurePoints(-5);
-				}
+				if (checkAfter(Test_Board, move)) this->winText->Text = "YOU LOSE!";
 					
-				else this->winText->Text = "DRAW";
+				else
+				{
+					this->winText->Text = "DRAW";
+					player.configurePoints(+5);
+				}
 
 				this->winText->Show();
 			}
@@ -196,10 +197,14 @@ namespace KSGGames {
 
 			if (checkAfter(Test_Board, move)) {
 				this->winText->Text = "YOU WIN!";
-				player.configurePoints(5);
+				player.configurePoints(+10);
 			}
 
-			else this->winText->Text = "DRAW";
+			else
+			{
+				this->winText->Text = "DRAW";
+				player.configurePoints(+5);
+			}
 
 			this->winText->Show();
 		}
@@ -443,31 +448,8 @@ namespace KSGGames {
 			 array<System::Windows::Forms::PictureBox^, 2>^ ChangePawn;
 			 bool whitesMove;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-private: System::Windows::Forms::Button^  button1;
-private: System::Windows::Forms::Label^  winText;
-
-
-
-	protected:
-
-
-	protected:
+	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Label^  winText;
 
 	private:
 		/// <summary>

@@ -203,9 +203,10 @@ namespace KSGGames {
 			cmd1 = gcnew MySqlCommand("SELECT Username, Points FROM users ORDER BY Points DESC LIMIT 1000", conn);
 			dr = cmd1->ExecuteReader();
 			while (dr->Read()) {
-				if (dr->GetString(0) == userUsername)
+				if (dr->GetString(0) == userUsername) {
 					userPlace = rowAmount + 1;
-					
+					user.points = dr->GetInt32(1);
+				}
 				rowAmount++;
 			}
 			dr->Close();
