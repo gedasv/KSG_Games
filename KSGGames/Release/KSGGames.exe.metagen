@@ -1,7 +1,7 @@
-  KSGGames.Minesweeper.resources - Embedded, ContainedInManifestFile, 
   KSGGames.Chess.resources - Embedded, ContainedInManifestFile, 
   KSGGames.ChessPrac.resources - Embedded, ContainedInManifestFile, 
   KSGGames.Login.resources - Embedded, ContainedInManifestFile, 
+  KSGGames.Minesweeper.resources - Embedded, ContainedInManifestFile, 
   KSGGames.PgrMenu.resources - Embedded, ContainedInManifestFile, 
   KSGGames.START.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319

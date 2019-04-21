@@ -442,7 +442,7 @@ namespace KSGGames {
 	private: System::Windows::Forms::PictureBox^ fromBox;
 			 System::Drawing::Image^ backImg;
 			 System::Boolean ableToSwap = false;
-			 double picSize = 80;
+			 int picSize = 80;
 			 array<System::Windows::Forms::PictureBox^, 2>^ Board;
 			 array<System::String^ >^ Pictures;
 			 array<System::Windows::Forms::PictureBox^, 2>^ ChangePawn;

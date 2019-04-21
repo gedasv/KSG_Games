@@ -1,13 +1,16 @@
-﻿  Login.cpp
-c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chessprac.h(297): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+﻿  Chess.cpp
+  ChessPrac.cpp
+  chess_bot.cpp
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(35): warning C4018: '<': signed/unsigned mismatch
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(249): warning C4018: '<': signed/unsigned mismatch
+c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(278): warning C4018: '<': signed/unsigned mismatch
+  chess_rules.cpp
+  Login.cpp
   Minesweeper.cpp
-  PgrMenu.cpp
-c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chessprac.h(297): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  START.cpp
-c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chessprac.h(297): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   minesweeper_rules.cpp
+  PgrMenu.cpp
+  START.cpp
+  user.cpp
   Generating Code...
-  KSGGames.vcxproj -> C:\Users\gedas\Desktop\very newest ksggames\KSGGames\Release\KSGGames.exe
+  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
+  KSGGames.vcxproj -> C:\Users\kciul\Desktop\KSGGames\KSGGames\Release\KSGGames.exe

@@ -94,7 +94,7 @@
     <EmbeddedResource Include="ChessPrac.resx">
       <Filter>Header Files</Filter>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\Minesweeper.resx">
+    <EmbeddedResource Include="Minesweeper.resx">
       <Filter>Header Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

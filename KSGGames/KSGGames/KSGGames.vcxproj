@@ -168,7 +168,6 @@
     <ClInclude Include="user.h" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\..\Minesweeper.resx" />
     <EmbeddedResource Include="Chess.resx">
       <DependentUpon>Chess.h</DependentUpon>
       <SubType>Designer</SubType>
@@ -177,6 +176,7 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Minesweeper.resx" />
     <EmbeddedResource Include="PgrMenu.resx">
       <DependentUpon>PgrMenu.h</DependentUpon>
     </EmbeddedResource>

@@ -91,18 +91,18 @@ float calcPos(changedMap Board[8][8], bool whitesMove)
 
 				if (type == "King")
 				{
-					if (i == 0 || i == 7 || j == 0 || j == 7) numb += 0.15;
-					else if (i == 1 || i == 6 || j == 1 || j == 6) numb += 0.05;
-					else if (i == 2 || i == 5 || j == 2 || j == 5) numb += -0.05;
-					else numb += -0.15;
+					if (i == 0 || i == 7 || j == 0 || j == 7) numb += 0.15F;
+					else if (i == 1 || i == 6 || j == 1 || j == 6) numb += 0.05F;
+					else if (i == 2 || i == 5 || j == 2 || j == 5) numb += -0.05F;
+					else numb += -0.15F;
 				}
 
 				else
 				{
-					if (i == 0 || i == 7 || j == 0 || j == 7) numb += -0.15;
-					else if (i == 1 || i == 6 || j == 1 || j == 6) numb += -0.05;
-					else if (i == 2 || i == 5 || j == 2 || j == 5) numb += 0.05;
-					else numb += 0.15;
+					if (i == 0 || i == 7 || j == 0 || j == 7) numb += -0.15F;
+					else if (i == 1 || i == 6 || j == 1 || j == 6) numb += -0.05F;
+					else if (i == 2 || i == 5 || j == 2 || j == 5) numb += 0.05F;
+					else numb += 0.15F;
 				}
 
 				if ((team == "white" && !whitesMove) || (team == "black" && whitesMove)) numb *= -1;

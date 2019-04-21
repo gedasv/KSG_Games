@@ -388,4 +388,6 @@ std::string changeEndPawn(Square Board[8][8], std::string name)
 			}
 		}
 	}
+
+	return "";
 }
