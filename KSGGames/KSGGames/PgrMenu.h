@@ -3,6 +3,7 @@
 #include "Chess.h"
 #include "user.h"
 #include "ChessPrac.h"
+#include "Minesweeper.h"
 
 namespace KSGGames {
 	using namespace System;
@@ -33,7 +34,6 @@ namespace KSGGames {
 			user.initUser(id);
 			leaderboardLabelArray = gcnew array<System::Windows::Forms::Label^, 2>(3, 7);
 			labelArrayInit(leaderboardLabelArray);
-			
 		}
 
 	protected:
@@ -51,23 +51,17 @@ namespace KSGGames {
 	private: array<System::Windows::Forms::Label^, 2>^ leaderboardLabelArray;
 	private: array<String^, 1>^ leaderboardFoundNames;
 	private: System::Windows::Forms::PictureBox^  KSGGamesLogo2;
-
 	private: System::Windows::Forms::PictureBox^  KSGGamesLogo;
-	protected:
-
 	private: System::Windows::Forms::Button^  gamesButton;
 	private: System::Windows::Forms::Button^  leaderboardButton;
 	private: System::Windows::Forms::Button^  userButton;
-
 	private: System::Windows::Forms::Panel^  menuPanel;
 	private: System::Windows::Forms::Panel^  gamesPanel;
 	private: System::Windows::Forms::Panel^  userPanel;
-
 	private: System::Windows::Forms::Button^  game3Button;
 	private: System::Windows::Forms::Button^  game2Button;
 	private: System::Windows::Forms::Button^  gamesBackButton;
 	private: System::Windows::Forms::Button^  userBackButton;
-
 	private: System::Windows::Forms::Label^  userNameLabel;
 	private: System::Windows::Forms::Label^  userLabel1;
 	private: System::Windows::Forms::Label^  userEmailLabel;
@@ -79,7 +73,6 @@ namespace KSGGames {
 	private: System::Windows::Forms::Panel^  userPasswordPanel;
 	private: System::Windows::Forms::TextBox^  userTextBox1;
 	private: System::Windows::Forms::Panel^  userBGPanel;
-
 	private: System::Windows::Forms::TextBox^  userTextBox3;
 	private: System::Windows::Forms::TextBox^  userTextBox2;
 	private: System::Windows::Forms::Button^  userChangePassButton2;
@@ -87,7 +80,6 @@ namespace KSGGames {
 	private: System::Windows::Forms::Button^  userTerminateButton2;
 	private: System::Windows::Forms::Panel^  leaderboardPanel;
 	private: System::Windows::Forms::Button^  leaderboardBackButton;
-
 	private: System::Windows::Forms::TextBox^  leaderboardSearchTextbox;
 	private: System::Windows::Forms::Label^  leaderboardLabel1;
 	private: System::Windows::Forms::Panel^  leaderboardListPanel;
@@ -95,19 +87,13 @@ namespace KSGGames {
 	private: System::Windows::Forms::Label^  leaderboardListNameLabel;
 	private: System::Windows::Forms::Label^  leaderboardListPlaceLabel;
 	private: System::Windows::Forms::Label^  leaderboardYourLabel3;
-
 	private: System::Windows::Forms::Label^  leaderboardYourLabel2;
-
 	private: System::Windows::Forms::Label^  leaderboardYourLabel1;
 	private: System::Windows::Forms::Label^  leaderboardYouAreLabel;
 	private: System::Windows::Forms::Button^  gamesVSPlayerButton;
 	private: System::Windows::Forms::Button^  gamesVSBotButton;
 	private: System::Windows::Forms::Button^  infoButton;
-
-
-
 	private: System::Windows::Forms::Button^  game1Button;
-
 
 	private: System::Void PgrMenu_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
 		Application::Exit();
@@ -136,6 +122,10 @@ namespace KSGGames {
 	private: System::Void gamesVSPlayerButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		ChessPrac ^ chessGame = gcnew ChessPrac;
 		chessGame->Show();
+	}
+	private: System::Void MinesweeperGame(System::Object^  sender, System::EventArgs^  e) {
+		Minesweeper ^ minesweeperGame = gcnew Minesweeper(user.GetId());
+		minesweeperGame->Show();
 	}
 
 	private: System::Void leaderboardButton_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -416,8 +406,6 @@ namespace KSGGames {
 		System::ComponentModel::Container ^components;
 
 
-
-
 #pragma region Windows Form Designer generated code
 			 /// <summary>
 			 /// Required method for Designer support - do not modify
@@ -624,7 +612,6 @@ namespace KSGGames {
 				 // 
 				 this->game2Button->BackColor = System::Drawing::Color::Transparent;
 				 this->game2Button->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"game2Button.BackgroundImage")));
-				 this->game2Button->Enabled = false;
 				 this->game2Button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 				 this->game2Button->Font = (gcnew System::Drawing::Font(L"Rockwell", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					 static_cast<System::Byte>(0)));
@@ -634,6 +621,7 @@ namespace KSGGames {
 				 this->game2Button->TabIndex = 5;
 				 this->game2Button->Text = L"MINESWEEPER";
 				 this->game2Button->UseVisualStyleBackColor = false;
+				 this->game2Button->Click += gcnew System::EventHandler(this, &PgrMenu::MinesweeperGame);
 				 // 
 				 // gamesVSPlayerButton
 				 // 
@@ -1065,10 +1053,10 @@ namespace KSGGames {
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 				 this->ClientSize = System::Drawing::Size(463, 750);
-				 this->Controls->Add(this->menuPanel);
 				 this->Controls->Add(this->gamesPanel);
 				 this->Controls->Add(this->userPanel);
 				 this->Controls->Add(this->leaderboardPanel);
+				 this->Controls->Add(this->menuPanel);
 				 this->Cursor = System::Windows::Forms::Cursors::Default;
 				 this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::Fixed3D;
 				 this->MaximizeBox = false;

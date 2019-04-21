@@ -5,16 +5,12 @@
 #include "user.h"
 
 namespace KSGGames {
-
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	//using namespace MySql::Data::MySqlClient;
-	
-	//const std::string connInfo = "SERVER=127.0.0.1;UserID=root;Password=;Database=ksg_games";
 
 	/// <summary>
 	/// Summary for Login
@@ -26,8 +22,6 @@ namespace KSGGames {
 		{
 			InitializeComponent();
 			registerPanel->Hide();
-
-
 		}
 
 	////////////////////////////
@@ -109,7 +103,6 @@ namespace KSGGames {
 		loginErrorLabel2->Hide();
 		loginPanel->Show();
 	}
-
 	private: System::Void registerButton2_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		String^ name = registerTextBox3->Text;
@@ -183,11 +176,9 @@ namespace KSGGames {
 					}
 				}
 
-				
 				conn->Close();
 				return true;
 			 }
-
 	private: bool emailValidation(String^ unmanagedEmail) {
 				std::string email = msclr::interop::marshal_as<std::string>(unmanagedEmail);
 				const std::regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
@@ -217,7 +208,6 @@ namespace KSGGames {
 				conn->Close();
 				return true;
 			}
-
 	private: bool passwordValidation(String^ unmanagedPass1, String^ unmanagedPass2) {
 				 std::string pass1 = msclr::interop::marshal_as<std::string>(unmanagedPass1);
 				 std::string pass2 = msclr::interop::marshal_as<std::string>(unmanagedPass2);
@@ -339,12 +329,13 @@ namespace KSGGames {
 			// 
 			// loginButton1
 			// 
+			this->loginButton1->BackColor = System::Drawing::Color::Transparent;
 			this->loginButton1->Location = System::Drawing::Point(160, 511);
 			this->loginButton1->Name = L"loginButton1";
 			this->loginButton1->Size = System::Drawing::Size(127, 40);
 			this->loginButton1->TabIndex = 2;
 			this->loginButton1->Text = L"LOGIN";
-			this->loginButton1->UseVisualStyleBackColor = true;
+			this->loginButton1->UseVisualStyleBackColor = false;
 			this->loginButton1->Click += gcnew System::EventHandler(this, &Login::loginButton1_Click);
 			// 
 			// loginLabel1

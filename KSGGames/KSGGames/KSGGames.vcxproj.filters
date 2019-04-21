@@ -39,6 +39,12 @@
     <ClCompile Include="ChessPrac.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Minesweeper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minesweeper_rules.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PgrMenu.h">
@@ -65,6 +71,12 @@
     <ClInclude Include="ChessPrac.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Minesweeper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="minesweeper_rules.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PgrMenu.resx">
@@ -80,6 +92,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="ChessPrac.resx">
+      <Filter>Header Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Minesweeper.resx">
       <Filter>Header Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

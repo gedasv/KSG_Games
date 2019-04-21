@@ -24,6 +24,7 @@ public:
 	void configurePoints(int amount);
 
 	int GetId() { return id; }
+	bool GetAdmin() { return admin; }
 	std::string GetName() { return username; }
 	std::string GetEmail() { return email; }
 	std::string GetPassword() { return password; }

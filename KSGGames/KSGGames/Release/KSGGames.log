@@ -1,11 +1,13 @@
 ﻿  Login.cpp
-c:\users\kciul\desktop\jkm\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\kciul\desktop\jkm\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chessprac.h(297): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Minesweeper.cpp
   PgrMenu.cpp
-c:\users\kciul\desktop\jkm\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\kciul\desktop\jkm\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chessprac.h(297): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   START.cpp
-c:\users\kciul\desktop\jkm\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-c:\users\kciul\desktop\jkm\ksggames\ksggames\chessprac.h(299): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chess.h(382): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\gedas\desktop\very newest ksggames\ksggames\ksggames\chessprac.h(297): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  minesweeper_rules.cpp
   Generating Code...
-  KSGGames.vcxproj -> C:\Users\kciul\Desktop\JKM\KSGGames\Release\KSGGames.exe
+  KSGGames.vcxproj -> C:\Users\gedas\Desktop\very newest ksggames\KSGGames\Release\KSGGames.exe
