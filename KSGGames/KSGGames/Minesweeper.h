@@ -20,7 +20,6 @@ namespace KSGGames {
 	namespace {
 		Tile tiles[sizeX][sizeY];
 		User user1;
-
 	}
 
 	/// <summary>
@@ -34,7 +33,12 @@ namespace KSGGames {
 			InitializeComponent();
 
 			System::Windows::Forms::Control::SetStyle(System::Windows::Forms::ControlStyles::SupportsTransparentBackColor, true);
-
+			
+			// atnaujinti visus langelius i pradine busena
+			for (int i = 0; i < sizeX; i++)
+				for (int j = 0; j < sizeX; j++)
+					tiles[i][j].reset();
+		
 			user1.initUser(id);
 			
 			bombsInGame = 0, tilesNotOpened = sizeX*sizeY;

@@ -21,4 +21,6 @@ public:
 	void setBomb(bool set) { bomb = set; }
 	void setOpen(bool set) { opened = set; }
 	void setFlag(bool set) { flag = set; }
+
+	void reset();
 };

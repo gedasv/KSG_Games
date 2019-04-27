@@ -1,16 +1,7 @@
-﻿  Chess.cpp
-  ChessPrac.cpp
-  chess_bot.cpp
-c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(35): warning C4018: '<': signed/unsigned mismatch
-c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(249): warning C4018: '<': signed/unsigned mismatch
-c:\users\kciul\desktop\ksggames\ksggames\ksggames\chess_bot.cpp(278): warning C4018: '<': signed/unsigned mismatch
-  chess_rules.cpp
-  Login.cpp
+﻿  Login.cpp
   Minesweeper.cpp
   minesweeper_rules.cpp
   PgrMenu.cpp
   START.cpp
-  user.cpp
   Generating Code...
-  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
-  KSGGames.vcxproj -> C:\Users\kciul\Desktop\KSGGames\KSGGames\Release\KSGGames.exe
+  KSGGames.vcxproj -> C:\Users\gedas\Desktop\ksg_games\KSGGames\Release\KSGGames.exe
